@@ -28,7 +28,7 @@
           class="ma-2 font-italic font-weight-bold"
           x-large
           text
-          color="rgba(0, 128, 128, 0.712)"
+          color="#004D40"
         >
           大学生岗位匹配系统
         </v-btn>
@@ -42,7 +42,7 @@
           class="ma-2"
           outlined
           fab
-          color="teal"
+          color="#80CBC4"
           v-bind="attrs"
           v-on="on"
           to="/help"
@@ -59,7 +59,7 @@
           class="ma-2"
           outlined
           fab
-          color="indigo"
+          color="#4DD0E1"
           v-bind="attrs"
           v-on="on"
         >

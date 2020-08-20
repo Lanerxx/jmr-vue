@@ -24,7 +24,7 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    login: () => import("@/views/Login.vue"),
+    login: () => import("@/views/login/Login.vue"),
     welcome: () => import("@/views/Welcome.vue"),
     MyHeader,
     MyFooter,
