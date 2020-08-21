@@ -33,6 +33,8 @@ export const ADD_POST_ENTERPRISE = "addPostByEnterprise";
 export const DELETE_POST_ENTERPRISE = "deletePostByEnterprise";
 
 export const GET_EXCEPTION = "getException";
-export const CERTI_ENTERPRISE = "certificateEnterprse";
+export const CERTI_COMPANY = "certificateCompany";
 export const CERTI_STUDENT = "certificateStudent";
-export const CERTI_ADMIN = "certificateAdmin";
+export const CERTI_JOB_DIRECTOR = "certificateJobDirector";
+export const CERTI_GENERAL_ADMIN = "certificateGeneralAdmin";
+export const CERTI_SYSTEM_ADMIN = "certificateSystemAdmin";

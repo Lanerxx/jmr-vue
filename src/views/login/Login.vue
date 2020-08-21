@@ -26,7 +26,15 @@
         </v-btn>
       </v-col>
       <v-col cols="4">
-        <v-btn x-large class="ma-2" tile outlined color="#00796B" block>
+        <v-btn
+          x-large
+          class="ma-2"
+          tile
+          outlined
+          color="#00796B"
+          to="/studentLogin"
+          block
+        >
           <v-icon left>mdi-school</v-icon>
           学生端
         </v-btn>
@@ -36,13 +44,29 @@
     <v-row>
       <v-col cols="2"></v-col>
       <v-col cols="4">
-        <v-btn x-large class="ma-2" tile outlined color="#00796B" block>
+        <v-btn
+          x-large
+          class="ma-2"
+          tile
+          outlined
+          color="#00796B"
+          block
+          to="/adminLogin"
+        >
           <v-icon left>mdi-lock</v-icon>
           管理端
         </v-btn>
       </v-col>
       <v-col cols="4">
-        <v-btn x-large class="ma-2" tile outlined color="#00796B" block>
+        <v-btn
+          x-large
+          class="ma-2"
+          tile
+          outlined
+          color="#00796B"
+          block
+          to="/jobDirectorLogin"
+        >
           <v-icon left>mdi-account-circle</v-icon>
           就业专员端
         </v-btn>

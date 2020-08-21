@@ -22,27 +22,27 @@
               <v-card flat>
                 <v-card class="mx-auto ">
                   <v-card-title class="title">
-                    Login with your phone number and password!
+                    Welcome to the JMR system!
                   </v-card-title>
                   <v-card-text class="text">
                     <form>
                       <v-text-field
-                        v-model="number"
+                        v-model="c_telephone"
                         label="请输入您的电话号"
                         required
-                        @input="$v.number.$touch()"
-                        @blur="$v.number.$touch()"
+                        @input="$v.c_telephone.$touch()"
+                        @blur="$v.c_telephone.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="password"
+                        v-model="c_password"
                         label="请输入您的密码"
                         required
                         type="password"
-                        @input="$v.password.$touch()"
-                        @blur="$v.password.$touch()"
+                        @input="$v.c_password.$touch()"
+                        @blur="$v.c_password.$touch()"
                       ></v-text-field>
                       <v-spacer></v-spacer>
-                      <v-btn class="mr-4" @click="login" to="/help">
+                      <v-btn class="mr-4" @click="login">
                         登陆
                       </v-btn>
                     </form>
@@ -54,86 +54,81 @@
               <v-card flat>
                 <v-card class="mx-auto ">
                   <v-card-title class="title">
-                    Register by your name and phonenumber!
+                    Welcome to the JMR system!
                   </v-card-title>
                   <v-card-text class="text">
                     <form>
                       <v-text-field
-                        v-model="name"
+                        v-model="c_name"
                         label="*请输入企业名"
                         required
-                        @input="$v.name.$touch()"
-                        @blur="$v.name.$touch()"
+                        @input="$v.c_name.$touch()"
+                        @blur="$v.c_name.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
-                        label="*请输入秘密"
+                        v-model="c_password"
+                        label="*请输入密码"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_password.$touch()"
+                        @blur="$v.c_password.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
-                        label="*请再次输入秘密"
+                        v-model="c_password_copy"
+                        label="*请再次输入密码"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_password_copy.$touch()"
+                        @blur="$v.c_password_copy.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
+                        v-model="c_s_code"
                         label="*请输入企业统一社会信用代码"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_s_code.$touch()"
+                        @blur="$v.c_s_code.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
+                        v-model="c_description"
                         label="*请输入企业简介"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_description.$touch()"
+                        @blur="$v.c_description.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
+                        v-model="c_contact"
                         label="*请输入企业联系人"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_contact.$touch()"
+                        @blur="$v.c_contact.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
+                        v-model="c_telephone"
                         label="*请输入企业联系电话"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_telephone.$touch()"
+                        @blur="$v.c_telephone.$touch()"
                       ></v-text-field>
                       <v-text-field
-                        v-model="phoneNumber"
+                        v-model="c_email"
                         label="*请输入企业邮箱"
                         required
-                        @input="$v.phoneNumber.$touch()"
-                        @blur="$v.phoneNumber.$touch()"
+                        @input="$v.c_email.$touch()"
+                        @blur="$v.c_email.$touch()"
                       ></v-text-field>
                       <v-spacer></v-spacer>
                       <v-btn
                         @click.stop="dialogR = true"
                         class="mr-4"
-                        @click="registerEnterprise"
+                        @click="registerCompany"
                       >
                         注册
                       </v-btn>
                       <v-dialog v-model="dialogR" max-width="290" v-if="user">
                         <v-card>
                           <v-card-title class="headline" v-if="user">
-                            恭喜您，注册成功～
+                            恭喜您，注册成功！
                           </v-card-title>
-
                           <v-card-text v-if="user">
-                            您的账号：{{ user.user.number }}
-                          </v-card-text>
-
-                          <v-card-text v-if="user">
-                            您的初始密码：{{ user.user.number }}
+                            您可以使用手机号和密码登陆。
                           </v-card-text>
 
                           <v-card-actions>
@@ -164,7 +159,6 @@
 <script>
 import { LOGIN } from "@/store/types.js";
 import { REGISTER_ENTERPRISE } from "@/store/types.js";
-import { REGISTER_STUDENT } from "@/store/types.js";
 import { GET_EXCEPTION } from "@/store/types.js";
 import { UPDATE_USER } from "@/store/types.js";
 
@@ -174,46 +168,50 @@ export default {
   data: () => ({
     dialogR: false,
     tab: null,
-    number: null,
-    password: null,
-    name: null,
-    phoneNumber: null,
-    code: null,
-    description: null,
-    contact: null,
-    email: null
+    c_name: null,
+    c_password: null,
+    c_password_copy: null,
+    c_s_code: null,
+    c_description: null,
+    c_contact: null,
+    c_telephone: null,
+    c_email: null
   }),
 
   methods: {
     login() {
       this.$store.dispatch(LOGIN, {
-        number: this.number,
-        password: this.password
+        userPhoneNumber: this.c_telephone,
+        userPassword: this.c_password,
+        company: true
       });
       if (this.isLogin != null) {
         this.dialog = false;
       }
     },
-    registerStudent() {
+    registerCompany() {
       var flag = true;
-      if (this.name == null || this.phoneNumber == null) {
-        flag = false;
-      }
-      if (flag)
-        this.$store.dispatch(REGISTER_STUDENT, {
-          name: this.name,
-          phoneNumber: this.phoneNumber
-        });
-    },
-    registerEnterprise() {
-      var flag = true;
-      if (this.name == null || this.phoneNumber == null) {
+      if (
+        this.c_name == null ||
+        this.c_telephone == null ||
+        !this.c_password == null ||
+        this.c_password_copy == null ||
+        this.c_s_code == null ||
+        this.c_description == null ||
+        this.c_contact == null ||
+        this.c_email == null
+      ) {
         flag = false;
       }
       if (flag)
         this.$store.dispatch(REGISTER_ENTERPRISE, {
-          name: this.name,
-          phoneNumber: this.phoneNumber
+          c_name: this.c_name,
+          c_password: this.c_password,
+          c_s_code: this.c_s_code,
+          c_description: this.c_description,
+          c_contact: this.c_contact,
+          c_telephone: this.c_telephone,
+          c_email: this.c_email
         });
       else {
         this.$store.commit(GET_EXCEPTION, {
@@ -229,9 +227,6 @@ export default {
     }
   },
   computed: {
-    formatDate() {
-      return date => date.replace("T", " ").substring(0, 16);
-    },
     ...mapState(["user"])
   }
 };

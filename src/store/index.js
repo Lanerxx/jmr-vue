@@ -55,7 +55,7 @@ const myMutations = {
   },
   [types.CERTI_JOB_DIRECTOR](state, data) {
     state.isJobDirector = data;
-  },
+  }
 };
 
 const myActions = {
@@ -67,6 +67,7 @@ const myActions = {
       sessionStorage.setItem(author, auth);
       sessionStorage.setItem("role", resp.data.role);
       updateRoutes();
+      console.log("5757567");
       switch (sessionStorage.getItem("role")) {
         case systemAdminRole:
           commit(types.CERTI_SYSTEM_ADMIN, true);
