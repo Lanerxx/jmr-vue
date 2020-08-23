@@ -24,6 +24,10 @@ const routes = [
   {
     path: "/jobDirectorLogin",
     component: () => import("@/views/login/jobDirectorLogin.vue")
+  },
+  {
+    path: "/help",
+    component: () => import("@/views/Help.vue")
   }
 ];
 
@@ -41,7 +45,20 @@ let generalAdminRoutes = [];
 
 let studentRoutes = [];
 
-let companyRoutes = [];
+let companyRoutes = [
+  {
+    path: "/companyBasicInformation",
+    component: () => import("@/views/company/CompanyBasicInformation")
+  },
+  {
+    path: "/companyJobInformation",
+    component: () => import("@/views/company/CompanyJobInformation.vue")
+  },
+  {
+    path: "/companySafetyInformation",
+    component: () => import("@/views/company/CompanySafetyInformation.vue")
+  }
+];
 
 let jobDirectorRoutes = [];
 

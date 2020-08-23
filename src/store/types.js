@@ -38,3 +38,10 @@ export const CERTI_STUDENT = "certificateStudent";
 export const CERTI_JOB_DIRECTOR = "certificateJobDirector";
 export const CERTI_GENERAL_ADMIN = "certificateGeneralAdmin";
 export const CERTI_SYSTEM_ADMIN = "certificateSystemAdmin";
+
+export const LIST_POSITIONS = "listPositions";
+export const LIST_PROFESSIONS = "listProfessions";
+
+export const GET_COMPANY = "getCompany";
+export const GET_INDEX_COMPANY = "getIndexCompany";
+export const LIST_JOBS_COMPANY = "getJobsByCompany";

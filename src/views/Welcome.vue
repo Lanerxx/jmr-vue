@@ -1,9 +1,7 @@
 <template>
   <v-container fluid class="grey lighten-5">
-    <v-row align="stretch" justify="space-around">
-      <v-col>
-        <MyHeader id="MyHeader" />
-      </v-col>
+    <v-row>
+      <v-col><br /></v-col>
     </v-row>
     <v-row align="stretch" justify="space-around" top="120">
       <eIndex id="eIndex" v-if="isCompany" />
@@ -12,14 +10,9 @@
       <gsIndex id="gsIndex" v-if="isGeneralAdmin" />
       <jIndex id="jIndex" v-if="isJobDirector" />
     </v-row>
-    <v-row>
-      <MyFooter id="MyFooter" />
-    </v-row>
   </v-container>
 </template>
 <script>
-import MyFooter from "@/views/Footer.vue";
-import MyHeader from "@/views/Header.vue";
 import { mapState } from "vuex";
 
 export default {
@@ -28,9 +21,7 @@ export default {
     eIndex: () => import("@/views/company/CompanyIndex.vue"),
     asIndex: () => import("@/views/systemAdmin/SystemAdminIndex.vue"),
     gsIndex: () => import("@/views/generalAdmin/GeneralAdminIndex.vue"),
-    jIndex: () => import("@/views/jobDirector/JobDirectorIndex.vue"),
-    MyHeader,
-    MyFooter
+    jIndex: () => import("@/views/jobDirector/JobDirectorIndex.vue")
   },
   computed: {
     ...mapState([

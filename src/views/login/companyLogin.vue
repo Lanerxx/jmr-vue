@@ -42,7 +42,7 @@
                         @blur="$v.c_password.$touch()"
                       ></v-text-field>
                       <v-spacer></v-spacer>
-                      <v-btn class="mr-4" @click="login">
+                      <v-btn class="mr-4" @click="login" to="/help">
                         登陆
                       </v-btn>
                     </form>

@@ -18,13 +18,13 @@ const myState = {
   notLogin: true,
   user: null,
   admin: null,
-  enterprise: null,
-  enterprises: [],
+  company: null,
+  companies: [],
   student: null,
   students: [],
   matchStudent: [],
   posts: [],
-  myPosts: [],
+  myJobs: [],
   qualified: null,
   rankingIndex: null,
   flag: null,
@@ -55,11 +55,25 @@ const myMutations = {
   },
   [types.CERTI_JOB_DIRECTOR](state, data) {
     state.isJobDirector = data;
+  },
+  [types.LIST_POSITIONS](state, data) {
+    state.positions = data;
+  },
+  [types.LIST_PROFESSIONS](state, data) {
+    state.professions = data;
+  },
+  [types.GET_COMPANY](state, data) {
+    state.company = data;
+  },
+  [types.LIST_JOBS_COMPANY](state, data) {
+    state.myJobs = data;
   }
 };
 
 const myActions = {
   // 登录
+  // ------以下为向springboot发出请求
+  // 需要取消mock，配置后端跨域
   async [types.LOGIN]({ commit }, data) {
     let resp = await axios.post("login", data);
     let auth = resp.headers[author];
@@ -67,7 +81,6 @@ const myActions = {
       sessionStorage.setItem(author, auth);
       sessionStorage.setItem("role", resp.data.role);
       updateRoutes();
-      console.log("5757567");
       switch (sessionStorage.getItem("role")) {
         case systemAdminRole:
           commit(types.CERTI_SYSTEM_ADMIN, true);
@@ -102,8 +115,6 @@ const myActions = {
     commit(types.REGISTER, resp.data);
   },
 
-  // ------以下为向springboot发出请求
-  // 需要取消mock，配置后端跨域
   async [types.UPDATE_USER]({ commit }, data) {
     commit(types.UPDATE_USER, data.user);
   },
@@ -145,18 +156,20 @@ const myActions = {
     commit(types.GET_STUDENT, resp.data.student);
     commit(types.GET_POSTS_STUDENT, resp.data.posts);
   },
-  async [types.GET_INDEX_ENTERPRISE]({ commit }) {
-    let resp = await axios.get("enterprise/index");
-    commit(types.GET_ENTERPRISE, resp.data.enterprise);
-    commit(types.GET_MYPOSTS_ENTERPRISE, resp.data.posts);
+  //-------Company-------
+  async [types.GET_INDEX_COMPANY]({ commit }) {
+    let resp = await axios.get("company/index");
+    commit(types.GET_COMPANY, resp.data.company);
   },
-  async [types.UPDATE_INFORMATION_ENTERPRISE]({ commit }, data) {
-    let resp = await axios.patch("enterprise/information", data);
-    commit(types.GET_ENTERPRISE, resp.data.enterprise);
-  },
-  async [types.LIST_POSTS_ENTERPRISE]({ commit }) {
-    let resp = await axios.get("enterprise/index");
-    commit(types.LIST_POSTS_ENTERPRISE, resp.data.posts);
+  // async [types.UPDATE_INFORMATION_COMPANY]({ commit }, data) {
+  //   let resp = await axios.patch("company/information", data);
+  //   commit(types.GET_ENTERPRISE, resp.data.enterprise);
+  // },
+  async [types.LIST_JOBS_COMPANY]({ commit }) {
+    let resp = await axios.get("company/jobs");
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobVos);
+    commit(types.LIST_POSITIONS, resp.data.positions);
+    commit(types.LIST_PROFESSIONS, resp.data.professions);
   },
   async [types.UPDATE_POST_ENTERPRISE]({ commit }, data) {
     let resp = await axios.patch(
@@ -177,11 +190,6 @@ const myActions = {
     console.log(data.id);
     let resp = await axios.get(`enterprise/match/post/${data.id}`);
     commit(types.MATCH_POST_ENTERPRISE, resp.data.students);
-  },
-  async [types.DOWNLOAD_RESUME_ENTERPRISE]({ commit }, data) {
-    console.log(data.id);
-    let resp = await axios.get(`enterprise/downloadResume/${data.id}`);
-    commit(types.MATCH_POST_ENTERPRISE, resp.data.flag);
   }
 };
 export default new Vuex.Store({
