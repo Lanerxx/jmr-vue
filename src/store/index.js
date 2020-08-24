@@ -161,10 +161,6 @@ const myActions = {
     let resp = await axios.get("company/index");
     commit(types.GET_COMPANY, resp.data.company);
   },
-  // async [types.UPDATE_INFORMATION_COMPANY]({ commit }, data) {
-  //   let resp = await axios.patch("company/information", data);
-  //   commit(types.GET_ENTERPRISE, resp.data.enterprise);
-  // },
   async [types.LIST_JOBS_COMPANY]({ commit }) {
     let resp = await axios.get("company/jobs");
     commit(types.LIST_JOBS_COMPANY, resp.data.companyJobVos);
