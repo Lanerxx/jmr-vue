@@ -57,6 +57,10 @@ let companyRoutes = [
   {
     path: "/companySafetyInformation",
     component: () => import("@/views/company/CompanySafetyInformation.vue")
+  },
+  {
+    path: "/companyStudentMatchResult/:cjid",
+    component: () => import("@/views/company/CompanyStudentMatchResult.vue")
   }
 ];
 

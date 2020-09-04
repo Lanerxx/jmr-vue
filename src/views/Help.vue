@@ -1,9 +1,7 @@
 <template>
   <div>
     <v-toolbar flat color="white" elevation="1" class="toolbar">
-      <v-toolbar-title>
-        ————————————————————————————— 帮助 ————————————————————————————
-      </v-toolbar-title>
+      <v-toolbar-title></v-toolbar-title>
     </v-toolbar>
     <v-container class="grey lighten-5">
       <v-row no-gutters>

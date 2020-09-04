@@ -22,13 +22,14 @@ const myState = {
   companies: [],
   student: null,
   students: [],
-  matchStudent: [],
-  posts: [],
+  studentMatchResults: [],
   myJobs: [],
+  positions: [],
+  professionsMClass: [],
+  professionsSClass: [],
   qualified: null,
   rankingIndex: null,
-  flag: null,
-  studentP: null
+  flag: null
 };
 
 const myMutations = {
@@ -59,14 +60,17 @@ const myMutations = {
   [types.LIST_POSITIONS](state, data) {
     state.positions = data;
   },
-  [types.LIST_PROFESSIONS](state, data) {
-    state.professions = data;
+  [types.LIST_PROFESSIONSMCLASS](state, data) {
+    state.professionsMClass = data;
   },
   [types.GET_COMPANY](state, data) {
     state.company = data;
   },
   [types.LIST_JOBS_COMPANY](state, data) {
     state.myJobs = data;
+  },
+  [types.MATCH_COMPANYJOB_COMPANY](state, data) {
+    state.studentMatchResults = data;
   }
 };
 
@@ -163,29 +167,34 @@ const myActions = {
   },
   async [types.LIST_JOBS_COMPANY]({ commit }) {
     let resp = await axios.get("company/jobs");
-    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobVos);
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
     commit(types.LIST_POSITIONS, resp.data.positions);
-    commit(types.LIST_PROFESSIONS, resp.data.professions);
+    commit(types.LIST_PROFESSIONSMCLASS, resp.data.professionsMClass);
   },
-  async [types.UPDATE_POST_ENTERPRISE]({ commit }, data) {
-    let resp = await axios.patch(
-      `enterprise/post/information/${data.id}`,
-      data
-    );
-    commit(types.LIST_POSTS_ENTERPRISE, resp.data.posts);
+  async [types.UPDATE_JOB_COMPANY]({ commit }, data) {
+    let resp = await axios.patch("company/job", data);
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
   },
-  async [types.ADD_POST_ENTERPRISE]({ commit }, data) {
-    let resp = await axios.post("enterprise/post", data);
-    commit(types.LIST_POSTS_ENTERPRISE, resp.data.posts);
+  async [types.ADD_JOB_COMPANY]({ commit }, data) {
+    console.log("dasdashidhaksdha s");
+    let resp = await axios.post("company/job", data);
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
   },
-  async [types.DELETE_POST_ENTERPRISE]({ commit }, data) {
-    let resp = await axios.delete(`enterprise/post/${data.id}`);
-    commit(types.LIST_POSTS_ENTERPRISE, resp.data.posts);
+  async [types.DELETE_JOB_COMPANY]({ commit }, data) {
+    let resp = await axios.delete(`company/job/${data.jid}`);
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
   },
-  async [types.MATCH_POST_ENTERPRISE]({ commit }, data) {
-    console.log(data.id);
-    let resp = await axios.get(`enterprise/match/post/${data.id}`);
-    commit(types.MATCH_POST_ENTERPRISE, resp.data.students);
+  async [types.MATCH_COMPANYJOB_COMPANY]({ commit }, data) {
+    let resp = await axios.get(`company/smr/${data.cjid}`);
+    commit(types.MATCH_COMPANYJOB_COMPANY, resp.data.studentMatchResults);
+  },
+  async [types.ADD_COMPANYJOB_COMPANY]({ commit }, data) {
+    let resp = await axios.post("company/companyJob", data);
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
+  },
+  async [types.UPDATE_COMPANYJOB_COMPANY]({ commit }, data) {
+    let resp = await axios.patch(`company/companyJob/${data.jid}`);
+    commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
   }
 };
 export default new Vuex.Store({

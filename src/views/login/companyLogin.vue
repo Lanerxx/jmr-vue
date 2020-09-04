@@ -27,6 +27,7 @@
                   <v-card-text class="text">
                     <form>
                       <v-text-field
+                        color="teal"
                         v-model="c_telephone"
                         label="请输入您的电话号"
                         required
@@ -34,6 +35,7 @@
                         @blur="$v.c_telephone.$touch()"
                       ></v-text-field>
                       <v-text-field
+                        color="teal"
                         v-model="c_password"
                         label="请输入您的密码"
                         required

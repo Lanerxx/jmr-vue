@@ -20,7 +20,6 @@ export const GET_INDEX_STUDENT = "getStudentIndex";
 export const GET_POSTS_STUDENT = "getPostsByStudent";
 
 export const DOWNLOAD_RESUME_ENTERPRISE = "downloadResumeByEnterprise";
-export const MATCH_POST_ENTERPRISE = "matchPostByEnterprise";
 export const GET_ENTERPRISE = "getEnterprise";
 export const GET_MYPOSTS_ENTERPRISE = "getMySPostsByEnterprise";
 export const GET_INDEX_ENTERPRISE = "getEnterprseIndex";
@@ -41,7 +40,14 @@ export const CERTI_SYSTEM_ADMIN = "certificateSystemAdmin";
 
 export const LIST_POSITIONS = "listPositions";
 export const LIST_PROFESSIONS = "listProfessions";
+export const LIST_PROFESSIONSMCLASS = "listProfessionsMClass";
 
 export const GET_COMPANY = "getCompany";
 export const GET_INDEX_COMPANY = "getIndexCompany";
 export const LIST_JOBS_COMPANY = "getJobsByCompany";
+export const ADD_JOB_COMPANY = "addJobByCompany";
+export const DELETE_JOB_COMPANY = "deleteJobByCompany";
+export const UPDATE_JOB_COMPANY = "updateJobByCompany";
+export const ADD_COMPANYJOB_COMPANY = "addCompanyJobByCompany";
+export const UPDATE_COMPANYJOB_COMPANY = "updateCompanyJobByCompany";
+export const MATCH_COMPANYJOB_COMPANY = "matchCompanyJobByCompany";
