@@ -39,8 +39,11 @@ const myMutations = {
   [types.LOGIN](state, data) {
     state.isLogin = data;
   },
-  [types.REGISTER](state, data) {
+  [types.UPDATE_USER](state, data) {
     state.user = data;
+  },
+  [types.REGISTER_COMPANY](state, data) {
+    state.company = data;
   },
   [types.CERTI_SYSTEM_ADMIN](state, data) {
     state.isSystemAdmin = data;
@@ -110,10 +113,7 @@ const myActions = {
     let resp = await axios.patch("user/password", data);
     commit(types.UPDATE_PASSWORD, resp.data);
   },
-  async [types.REGISTER_ENTERPRISE]({ commit }, data) {
-    let resp = await axios.post("register/enterprise", data);
-    commit(types.REGISTER, resp.data);
-  },
+
   async [types.REGISTER_STUDENT]({ commit }, data) {
     let resp = await axios.post("register/student", data);
     commit(types.REGISTER, resp.data);
@@ -161,6 +161,14 @@ const myActions = {
     commit(types.GET_POSTS_STUDENT, resp.data.posts);
   },
   //-------Company-------
+  async [types.REGISTER_COMPANY]({ commit }, data) {
+    console.log("3333");
+
+    let resp = await axios.post("register/company", data);
+    commit(types.REGISTER_COMPANY, resp.data.company);
+    commit(types.UPDATE_USER, resp.data.company);
+    console.log("4444");
+  },
   async [types.GET_INDEX_COMPANY]({ commit }) {
     let resp = await axios.get("company/index");
     commit(types.GET_COMPANY, resp.data.company);
@@ -195,6 +203,10 @@ const myActions = {
   async [types.UPDATE_COMPANYJOB_COMPANY]({ commit }, data) {
     let resp = await axios.patch(`company/companyJob/${data.jid}`);
     commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
+  },
+  async [types.UPDATE_INFORMATION_COMPANY]({ commit }, data) {
+    let resp = await axios.patch("company/information", data);
+    commit(types.GET_COMPANY, resp.data.company);
   }
 };
 export default new Vuex.Store({

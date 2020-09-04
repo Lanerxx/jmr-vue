@@ -11,6 +11,7 @@
               </v-col>
               <v-col cols="4">
                 <v-text-field
+                  color="teal"
                   label="Name"
                   v-model="company.c_name"
                 ></v-text-field>
@@ -20,6 +21,8 @@
               </v-col>
               <v-col cols="4">
                 <v-text-field
+                  readonly=""
+                  color="teal"
                   label="Code"
                   v-model="company.c_s_code"
                 ></v-text-field>
@@ -32,6 +35,7 @@
               </v-col>
               <v-col cols="10">
                 <v-text-field
+                  color="teal"
                   label="Detail"
                   v-model="company.c_description"
                 ></v-text-field>
@@ -44,6 +48,7 @@
               </v-col>
               <v-col cols="4">
                 <v-text-field
+                  color="teal"
                   label="Contact"
                   v-model="company.c_contact"
                 ></v-text-field>
@@ -53,6 +58,8 @@
               </v-col>
               <v-col cols="4">
                 <v-text-field
+                  readonly=""
+                  color="teal"
                   label="Telephone"
                   v-model="company.c_telephone"
                 ></v-text-field>
@@ -64,6 +71,7 @@
               </v-col>
               <v-col cols="10">
                 <v-text-field
+                  color="teal"
                   label="Email"
                   v-model="company.c_email"
                 ></v-text-field>
@@ -81,8 +89,7 @@
 
 <script>
 import { GET_INDEX_COMPANY } from "@/store/types.js";
-// import { UPDATE_INFORMATION_ENTERPRISE } from "@/store/types.js";
-// import { GET_EXCEPTION } from "@/store/types.js";
+import { UPDATE_INFORMATION_COMPANY } from "@/store/types.js";
 import { mapState } from "vuex";
 
 export default {
@@ -92,26 +99,14 @@ export default {
   },
   methods: {
     submit() {
-      // this.$store
-      //   .dispatch(UPDATE_INFORMATION_ENTERPRISE, {
-      //     enterprise: {
-      //       name: this.enterprise.enterprise.name,
-      //       detail: this.enterprise.enterprise.detail,
-      //       majorCut: this.enterprise.enterprise.majorCut,
-      //       lowestSalery: this.enterprise.enterprise.lowestSalery,
-      //       highestSalery: this.enterprise.enterprise.highestSalery,
-      //       industry: this.enterprise.enterprise.industry,
-      //       location: this.enterprise.enterprise.location,
-      //       phoneNumber: this.enterprise.enterprise.phoneNumber,
-      //       otherRequirements: this.enterprise.enterprise.otherRequirements
-      //     },
-      //     genderCut: this.enterprise.genderCut,
-      //     schoolRankCut: this.enterprise.schoolRankCut,
-      //     educationCut: this.enterprise.educationCut,
-      //     foreignLanguageProficiency: this.enterprise
-      //       .foreignLanguageProficiency,
-      //     enterpriseNature: this.enterprise.enterpriseNature
-      //   })
+      this.$store.dispatch(UPDATE_INFORMATION_COMPANY, {
+        c_name: this.company.c_name,
+        c_s_code: this.company.c_s_code,
+        c_description: this.company.c_description,
+        c_contact: this.company.c_contact,
+        c_telephone: this.company.c_telephone,
+        c_email: this.company.c_email
+      });
     }
   },
   computed: {

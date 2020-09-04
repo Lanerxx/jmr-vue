@@ -33,6 +33,7 @@
                     Update Your Password
                   </v-card-title>
                   <v-text-field
+                    color="teal"
                     v-model="oldPassword"
                     label="请输入旧密码"
                     required
@@ -41,6 +42,7 @@
                     @blur="$v.oldPassword.$touch()"
                   ></v-text-field>
                   <v-text-field
+                    color="teal"
                     v-model="newPassword"
                     label="请输入新密码"
                     required
@@ -49,6 +51,7 @@
                     @blur="$v.newPassword.$touch()"
                   ></v-text-field>
                   <v-text-field
+                    color="teal"
                     v-model="newPasswordR"
                     label="请重复输入新密码"
                     required

@@ -22,6 +22,7 @@
             label="Search"
             single-line
             hide-details
+            color="teal"
           ></v-text-field>
 
           <v-dialog v-model="dialog" max-width="850px">

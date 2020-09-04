@@ -1,6 +1,6 @@
 export const LOGIN = "login";
 export const REGISTER = "register";
-export const REGISTER_ENTERPRISE = "registerEnterprise";
+export const REGISTER_COMPANY = "registerCompany";
 export const REGISTER_STUDENT = "registerStudent";
 export const UPDATE_USER = "updateUser";
 export const UPDATE_PASSWORD = "updatePassword";
@@ -24,7 +24,6 @@ export const GET_ENTERPRISE = "getEnterprise";
 export const GET_MYPOSTS_ENTERPRISE = "getMySPostsByEnterprise";
 export const GET_INDEX_ENTERPRISE = "getEnterprseIndex";
 export const GET_INDEX_ENTERPRISE_IM = "getEnterprseIndexIm";
-export const UPDATE_INFORMATION_ENTERPRISE = "updateEnterpriseInformation";
 
 export const LIST_POSTS_ENTERPRISE = "listPostsByEnterprise";
 export const UPDATE_POST_ENTERPRISE = "updatePostByEnterprise";
@@ -44,6 +43,7 @@ export const LIST_PROFESSIONSMCLASS = "listProfessionsMClass";
 
 export const GET_COMPANY = "getCompany";
 export const GET_INDEX_COMPANY = "getIndexCompany";
+export const UPDATE_INFORMATION_COMPANY = "updateCompanyInformation";
 export const LIST_JOBS_COMPANY = "getJobsByCompany";
 export const ADD_JOB_COMPANY = "addJobByCompany";
 export const DELETE_JOB_COMPANY = "deleteJobByCompany";

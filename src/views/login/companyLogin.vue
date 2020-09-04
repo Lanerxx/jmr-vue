@@ -1,5 +1,6 @@
 <template>
   <v-container class="grey lighten-5">
+    {{ this.tab }}
     <v-row>
       <v-col>
         <v-card class="mx-auto">
@@ -71,11 +72,13 @@
                         v-model="c_password"
                         label="*请输入密码"
                         required
+                        type="password"
                         @input="$v.c_password.$touch()"
                         @blur="$v.c_password.$touch()"
                       ></v-text-field>
                       <v-text-field
                         v-model="c_password_copy"
+                        type="password"
                         label="*请再次输入密码"
                         required
                         @input="$v.c_password_copy.$touch()"
@@ -160,7 +163,7 @@
 
 <script>
 import { LOGIN } from "@/store/types.js";
-import { REGISTER_ENTERPRISE } from "@/store/types.js";
+import { REGISTER_COMPANY } from "@/store/types.js";
 import { GET_EXCEPTION } from "@/store/types.js";
 import { UPDATE_USER } from "@/store/types.js";
 
@@ -205,8 +208,8 @@ export default {
       ) {
         flag = false;
       }
-      if (flag)
-        this.$store.dispatch(REGISTER_ENTERPRISE, {
+      if (flag) {
+        this.$store.dispatch(REGISTER_COMPANY, {
           c_name: this.c_name,
           c_password: this.c_password,
           c_s_code: this.c_s_code,
@@ -215,13 +218,14 @@ export default {
           c_telephone: this.c_telephone,
           c_email: this.c_email
         });
-      else {
+      } else {
         this.$store.commit(GET_EXCEPTION, {
           message: "请完善所有信息后再注册！"
         });
       }
     },
     registered() {
+      this.tab = 0;
       this.dialogR = false;
       this.$store.dispatch(UPDATE_USER, {
         user: null
