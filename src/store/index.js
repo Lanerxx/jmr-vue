@@ -66,6 +66,9 @@ const myMutations = {
   [types.LIST_PROFESSIONSMCLASS](state, data) {
     state.professionsMClass = data;
   },
+  [types.LIST_PROFESSIONSSCLASS](state, data) {
+    state.professionsSClass = data;
+  },
   [types.GET_COMPANY](state, data) {
     state.company = data;
   },
@@ -113,12 +116,22 @@ const myActions = {
     let resp = await axios.patch("user/password", data);
     commit(types.UPDATE_PASSWORD, resp.data);
   },
-
+  async [types.GET_REGISTER_INDEX]({ commit }) {
+    let resp = await axios.get("register/index");
+    commit(types.LIST_POSITIONS, resp.data.positions);
+    commit(types.LIST_PROFESSIONSMCLASS, resp.data.professionsMClass);
+  },
+  async [types.GET_REGISTER_INDEX_SCLASS]({ commit }, data) {
+    console.log(data);
+    let resp = await axios.post("register/index/professionsSClass", data);
+    commit(types.LIST_PROFESSIONSSCLASS, resp.data.professionsSClass);
+  },
   async [types.REGISTER_STUDENT]({ commit }, data) {
+    console.log(data);
     let resp = await axios.post("register/student", data);
     commit(types.REGISTER, resp.data);
+    commit(types.UPDATE_USER, resp.data.student);
   },
-
   async [types.UPDATE_USER]({ commit }, data) {
     commit(types.UPDATE_USER, data.user);
   },
@@ -162,12 +175,9 @@ const myActions = {
   },
   //-------Company-------
   async [types.REGISTER_COMPANY]({ commit }, data) {
-    console.log("3333");
-
     let resp = await axios.post("register/company", data);
     commit(types.REGISTER_COMPANY, resp.data.company);
     commit(types.UPDATE_USER, resp.data.company);
-    console.log("4444");
   },
   async [types.GET_INDEX_COMPANY]({ commit }) {
     let resp = await axios.get("company/index");
@@ -184,7 +194,6 @@ const myActions = {
     commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
   },
   async [types.ADD_JOB_COMPANY]({ commit }, data) {
-    console.log("dasdashidhaksdha s");
     let resp = await axios.post("company/job", data);
     commit(types.LIST_JOBS_COMPANY, resp.data.companyJobs);
   },

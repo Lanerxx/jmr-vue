@@ -2,6 +2,8 @@ export const LOGIN = "login";
 export const REGISTER = "register";
 export const REGISTER_COMPANY = "registerCompany";
 export const REGISTER_STUDENT = "registerStudent";
+export const GET_REGISTER_INDEX = "getRegisterIndex";
+export const GET_REGISTER_INDEX_SCLASS = "getRegisterIndexSClass";
 export const UPDATE_USER = "updateUser";
 export const UPDATE_PASSWORD = "updatePassword";
 
@@ -40,6 +42,7 @@ export const CERTI_SYSTEM_ADMIN = "certificateSystemAdmin";
 export const LIST_POSITIONS = "listPositions";
 export const LIST_PROFESSIONS = "listProfessions";
 export const LIST_PROFESSIONSMCLASS = "listProfessionsMClass";
+export const LIST_PROFESSIONSSCLASS = "listProfessionsSClass";
 
 export const GET_COMPANY = "getCompany";
 export const GET_INDEX_COMPANY = "getIndexCompany";

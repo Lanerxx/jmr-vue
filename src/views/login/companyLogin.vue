@@ -1,6 +1,5 @@
 <template>
   <v-container class="grey lighten-5">
-    {{ this.tab }}
     <v-row>
       <v-col>
         <v-card class="mx-auto">
@@ -199,7 +198,7 @@ export default {
       if (
         this.c_name == null ||
         this.c_telephone == null ||
-        !this.c_password == null ||
+        this.c_password == null ||
         this.c_password_copy == null ||
         this.c_s_code == null ||
         this.c_description == null ||
