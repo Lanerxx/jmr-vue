@@ -44,22 +44,22 @@ let systemAdminRoutes = [];
 let generalAdminRoutes = [];
 
 let studentRoutes = [
-  // {
-  //   path: "/studentBasicInformation",
-  //   component: () => import("@/views/student/StudentBasicInformation")
-  // },
-  // {
-  //   path: "/studentJobInformation",
-  //   component: () => import("@/views/student/StudentJobInformation.vue")
-  // },
-  // {
-  //   path: "/studentSafetyInformation",
-  //   component: () => import("@/views/student/StudentSafetyInformation.vue")
-  // },
-  // {
-  //   path: "/studentCompanyMatchResult/:cjid",
-  //   component: () => import("@/views/student/StudentCompanyMatchResult.vue")
-  // }
+  {
+    path: "/studentBasicInformation",
+    component: () => import("@/views/student/StudentBasicInformation")
+  },
+  {
+    path: "/studentResumeInformation",
+    component: () => import("@/views/student/StudentResumeInformation.vue")
+  },
+  {
+    path: "/studentSafetyInformation",
+    component: () => import("@/views/student/StudentSafetyInformation.vue")
+  },
+  {
+    path: "/studentJobMatchResult",
+    component: () => import("@/views/student/StudentJobMatchResult.vue")
+  }
 ];
 
 let companyRoutes = [

@@ -93,7 +93,8 @@
 
 <script>
 import { GET_INDEX_COMPANY } from "@/store/types.js";
-import { UPDATE_PASSWORD } from "@/store/types.js";
+import { UPDATE_PASSWORD_COMPANY } from "@/store/types.js";
+import { GET_EXCEPTION } from "@/store/types.js";
 import { mapState } from "vuex";
 
 export default {
@@ -115,11 +116,20 @@ export default {
   methods: {
     updatePsw() {
       this.dialog = false;
-      this.$store.dispatch(UPDATE_PASSWORD, {
-        oldPassword: this.oldPassword,
-        newPassword: this.newPassword,
-        newPasswordR: this.newPasswordR
-      });
+      var flag = true;
+      if (this.newPassword != this.newPasswordR) {
+        flag = false;
+      }
+      if (flag) {
+        this.$store.dispatch(UPDATE_PASSWORD_COMPANY, {
+          oldPassword: this.oldPassword,
+          newPassword: this.newPassword
+        });
+      } else {
+        this.$store.commit(GET_EXCEPTION, {
+          message: "两次输入的密码不一致"
+        });
+      }
     }
   }
 };

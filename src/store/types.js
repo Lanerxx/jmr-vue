@@ -5,7 +5,6 @@ export const REGISTER_STUDENT = "registerStudent";
 export const GET_REGISTER_INDEX = "getRegisterIndex";
 export const GET_REGISTER_INDEX_SCLASS = "getRegisterIndexSClass";
 export const UPDATE_USER = "updateUser";
-export const UPDATE_PASSWORD = "updatePassword";
 
 export const GET_ADMIN = "getAdmin";
 export const GET_INDEX_ADMIN = "getAdminIndex";
@@ -16,10 +15,6 @@ export const DELETE_ENTERPRISE_ADMIN = "deleteEnterpriseByAdmin";
 export const ADD_STUDENT_ADMIN = "addStudentByAdmin";
 export const DELETE_STUDENT_ADMIN = "deleteStudentByAdmin";
 export const ADD_STUDENTSINFO_ADMIN = "addStudentsInfoByAdmin";
-
-export const GET_STUDENT = "getStudent";
-export const GET_INDEX_STUDENT = "getStudentIndex";
-export const GET_POSTS_STUDENT = "getPostsByStudent";
 
 export const DOWNLOAD_RESUME_ENTERPRISE = "downloadResumeByEnterprise";
 export const GET_ENTERPRISE = "getEnterprise";
@@ -45,6 +40,7 @@ export const LIST_PROFESSIONSMCLASS = "listProfessionsMClass";
 export const LIST_PROFESSIONSSCLASS = "listProfessionsSClass";
 
 export const GET_COMPANY = "getCompany";
+export const UPDATE_PASSWORD_COMPANY = "updatePasswordByCompany";
 export const GET_INDEX_COMPANY = "getIndexCompany";
 export const UPDATE_INFORMATION_COMPANY = "updateCompanyInformation";
 export const LIST_JOBS_COMPANY = "getJobsByCompany";
@@ -54,3 +50,15 @@ export const UPDATE_JOB_COMPANY = "updateJobByCompany";
 export const ADD_COMPANYJOB_COMPANY = "addCompanyJobByCompany";
 export const UPDATE_COMPANYJOB_COMPANY = "updateCompanyJobByCompany";
 export const MATCH_COMPANYJOB_COMPANY = "matchCompanyJobByCompany";
+
+export const GET_STUDENT = "getStudent";
+export const UPDATE_PASSWORD_STUDENT = "updatePasswordByStudent";
+export const GET_INDEX_STUDENT = "getIndexStudent";
+export const UPDATE_INFORMATION_STUDENT = "updateStudentInformation";
+export const LIST_RESUMES_STUDENT = "getResumesByStudent";
+export const ADD_RESUME_STUDENT = "addResumeByStudent";
+export const DELETE_RESUME_STUDENT = "deleteResumeByStudent";
+export const UPDATE_RESUME_STUDENT = "updateResumeByStudent";
+export const ADD_STUDENTRESUME_STUDENT = "addStudentResumeByStudent";
+export const DELETE_STUDENTRESUME_STUDENT = "deleteStudentResumeByStudent";
+export const MATCH_STUDENTRESUME_STUDENT = "matchStudentResumeByStudent";

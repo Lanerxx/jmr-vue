@@ -4,21 +4,21 @@
       <v-col cols="3">
         <v-card class="mx-auto" width="380" min-height="640" outlined>
           <v-list>
-            <v-list-item to="/companyBasicInformation">
+            <v-list-item to="/studentBasicInformation">
               <v-list-item-icon>
                 <v-icon>mdi-account-circle</v-icon>
               </v-list-item-icon>
               <v-list-item-title>基础信息</v-list-item-title>
             </v-list-item>
 
-            <v-list-item to="/companyJobInformation">
+            <v-list-item to="/studentResumeInformation">
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
               <v-list-item-title>岗位信息</v-list-item-title>
             </v-list-item>
 
-            <v-list-item to="/companySafetyInformation">
+            <v-list-item to="/studentSafetyInformation">
               <v-list-item-icon>
                 <v-icon>mdi-lock</v-icon>
               </v-list-item-icon>

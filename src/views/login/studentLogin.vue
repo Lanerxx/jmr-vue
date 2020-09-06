@@ -31,8 +31,6 @@
                         v-model="s_telephone"
                         label="请输入您的电话号"
                         required
-                        @input="$v.number.$touch()"
-                        @blur="$v.number.$touch()"
                       ></v-text-field>
                       <v-text-field
                         color="teal"
@@ -40,8 +38,6 @@
                         label="请输入您的密码"
                         required
                         type="password"
-                        @input="$v.password.$touch()"
-                        @blur="$v.password.$touch()"
                       ></v-text-field>
                       <v-spacer></v-spacer>
                       <v-btn class="mr-4" @click="login" to="/help">
@@ -264,14 +260,24 @@
                             label="是否就业*"
                           ></v-select>
                         </v-col>
-                        <v-col cols="12" sm="6" md="4" v-if="s_if_work == '是'">
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                          v-if="s_if_work == '已就业'"
+                        >
                           <v-text-field
                             v-model="s_w_city"
                             label="就业地级市"
                             hint="已就业者必填"
                           ></v-text-field>
                         </v-col>
-                        <v-col cols="12" sm="6" md="4" v-if="s_if_work == '是'">
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                          v-if="s_if_work == '已就业'"
+                        >
                           <v-text-field
                             v-model="s_company"
                             label="就业企业"
@@ -393,7 +399,7 @@ export default {
     sexItems: ["男", "女"],
     rangeItems: ["四k以下", "四至六k", "六至八k", "八至十k", "十K以上"],
     cityItems: ["烟台", "其他"],
-    isWork: ["是", "否"]
+    isWork: ["已就业", "未就业"]
   }),
 
   created() {
@@ -408,6 +414,7 @@ export default {
 
   methods: {
     login() {
+      console.log("login");
       this.$store.dispatch(LOGIN, {
         userPhoneNumber: this.s_telephone,
         userPassword: this.s_password,
@@ -451,14 +458,6 @@ export default {
         flag = false;
       }
       if (flag) {
-        switch (this.s_if_work) {
-          case "是":
-            this.s_if_work = 1;
-            break;
-          case "否":
-            this.s_if_work = 0;
-            break;
-        }
         this.$store.dispatch(REGISTER_STUDENT, {
           s_name: this.s_name,
           s_password: this.s_password,

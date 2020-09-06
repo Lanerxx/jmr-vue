@@ -7,6 +7,8 @@
       sort-desc="true"
       class="elevation-1"
       :search="search"
+      loading
+      loading-text="Loading... Please wait"
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
@@ -311,7 +313,7 @@
                     <v-col cols="12" sm="12" md="12">
                       <v-text-field
                         readonly=""
-                        v-model="editedItem.smr_resume.remark"
+                        v-model="editedItem.smr_resume.r_remark"
                         color="teal"
                         label="备注"
                       ></v-text-field>
@@ -344,14 +346,14 @@
       </template>
     </v-data-table>
     <br />
-
+    <!-- 
     <template>
       <v-progress-linear indeterminate color="teal"></v-progress-linear>
       <br />
       <v-progress-linear indeterminate color="green"></v-progress-linear>
       <br />
       <v-progress-linear indeterminate color="cyan"></v-progress-linear>
-    </template>
+    </template> -->
   </div>
 </template>
 
@@ -398,7 +400,7 @@ export default {
     formatDate() {
       return date => date.replace("T", " ").substring(0, 16);
     },
-    ...mapState(["studentMatchResults", "flag"])
+    ...mapState(["studentMatchResults"])
   },
   watch: {
     dialog(val) {

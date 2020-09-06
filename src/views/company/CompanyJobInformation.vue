@@ -374,6 +374,24 @@ export default {
       this.editedIndex = this.myJobs.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
+      this.jFLanguageR(item);
+    },
+
+    deleteItem(item) {
+      confirm("Are you sure you want to delete this item?") &&
+        this.$store.dispatch(DELETE_JOB_COMPANY, {
+          jid: item.company_job_pk.job.j_id
+        });
+    },
+
+    close() {
+      this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+    jFLanguageR(item) {
       switch (item.company_job_pk.job.j_f_language) {
         case 1:
           this.CET = "CET4";
@@ -413,22 +431,6 @@ export default {
           break;
       }
     },
-
-    deleteItem(item) {
-      confirm("Are you sure you want to delete this item?") &&
-        this.$store.dispatch(DELETE_JOB_COMPANY, {
-          jid: item.company_job_pk.job.j_id
-        });
-    },
-
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
     jFLanguage() {
       var jFLanguage = 0;
       switch (this.CET) {

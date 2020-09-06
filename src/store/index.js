@@ -9,27 +9,35 @@ Vue.use(Vuex);
 
 const myState = {
   exception: { message: null },
-  isSystemAdmin: false,
-  isGeneralAdmin: false,
-  isStudent: false,
-  isCompany: false,
-  isJobDirector: false,
   isLogin: false,
-  notLogin: true,
   user: null,
-  admin: null,
-  company: null,
-  companies: [],
-  student: null,
-  students: [],
-  studentMatchResults: [],
-  myJobs: [],
   positions: [],
   professionsMClass: [],
   professionsSClass: [],
-  qualified: null,
-  rankingIndex: null,
-  flag: null
+  flag: null,
+
+  //system-admin
+  isSystemAdmin: false,
+
+  //general-admin
+  isGeneralAdmin: false,
+
+  //job-director
+  isJobDirector: false,
+
+  //company
+  isCompany: false,
+  company: null,
+  companies: [],
+  studentMatchResults: [],
+  myJobs: [],
+
+  //student
+  isStudent: false,
+  student: null,
+  students: [],
+  jobMatchResults: [],
+  myResumes: []
 };
 
 const myMutations = {
@@ -42,32 +50,35 @@ const myMutations = {
   [types.UPDATE_USER](state, data) {
     state.user = data;
   },
-  [types.REGISTER_COMPANY](state, data) {
-    state.company = data;
-  },
-  [types.CERTI_SYSTEM_ADMIN](state, data) {
-    state.isSystemAdmin = data;
-  },
-  [types.CERTI_GENERAL_ADMIN](state, data) {
-    state.isGeneralAdmin = data;
-  },
-  [types.CERTI_STUDENT](state, data) {
-    state.isStudent = data;
-  },
-  [types.CERTI_COMPANY](state, data) {
-    state.isCompany = data;
-  },
-  [types.CERTI_JOB_DIRECTOR](state, data) {
-    state.isJobDirector = data;
-  },
+  //position
   [types.LIST_POSITIONS](state, data) {
     state.positions = data;
   },
+  //profession
   [types.LIST_PROFESSIONSMCLASS](state, data) {
     state.professionsMClass = data;
   },
   [types.LIST_PROFESSIONSSCLASS](state, data) {
     state.professionsSClass = data;
+  },
+  //system-admin
+  [types.CERTI_SYSTEM_ADMIN](state, data) {
+    state.isSystemAdmin = data;
+  },
+  //general-admin
+  [types.CERTI_GENERAL_ADMIN](state, data) {
+    state.isGeneralAdmin = data;
+  },
+  //job-director
+  [types.CERTI_JOB_DIRECTOR](state, data) {
+    state.isJobDirector = data;
+  },
+  //company
+  [types.CERTI_COMPANY](state, data) {
+    state.isCompany = data;
+  },
+  [types.REGISTER_COMPANY](state, data) {
+    state.company = data;
   },
   [types.GET_COMPANY](state, data) {
     state.company = data;
@@ -77,13 +88,30 @@ const myMutations = {
   },
   [types.MATCH_COMPANYJOB_COMPANY](state, data) {
     state.studentMatchResults = data;
+  },
+
+  //student
+  [types.REGISTER_STUDENT](state, data) {
+    state.student = data;
+  },
+  [types.GET_STUDENT](state, data) {
+    state.student = data;
+  },
+  [types.CERTI_STUDENT](state, data) {
+    state.isStudent = data;
+  },
+  [types.LIST_RESUMES_STUDENT](state, data) {
+    state.myResumes = data;
+  },
+  [types.MATCH_STUDENTRESUME_STUDENT](state, data) {
+    state.jobMatchResults = data;
   }
 };
 
 const myActions = {
-  // 登录
   // ------以下为向springboot发出请求
   // 需要取消mock，配置后端跨域
+  //-------Login-------
   async [types.LOGIN]({ commit }, data) {
     let resp = await axios.post("login", data);
     let auth = resp.headers[author];
@@ -111,11 +139,12 @@ const myActions = {
       commit(types.LOGIN, true);
     }
   },
-  async [types.UPDATE_PASSWORD]({ commit }, data) {
-    console.log(data);
-    let resp = await axios.patch("user/password", data);
-    commit(types.UPDATE_PASSWORD, resp.data);
+
+  async [types.UPDATE_USER]({ commit }, data) {
+    commit(types.UPDATE_USER, data.user);
   },
+
+  //-------Register-------
   async [types.GET_REGISTER_INDEX]({ commit }) {
     let resp = await axios.get("register/index");
     commit(types.LIST_POSITIONS, resp.data.positions);
@@ -126,58 +155,18 @@ const myActions = {
     let resp = await axios.post("register/index/professionsSClass", data);
     commit(types.LIST_PROFESSIONSSCLASS, resp.data.professionsSClass);
   },
-  async [types.REGISTER_STUDENT]({ commit }, data) {
-    console.log(data);
-    let resp = await axios.post("register/student", data);
-    commit(types.REGISTER, resp.data);
-    commit(types.UPDATE_USER, resp.data.student);
-  },
-  async [types.UPDATE_USER]({ commit }, data) {
-    commit(types.UPDATE_USER, data.user);
-  },
-  async [types.GET_INDEX_ADMIN]({ commit }) {
-    let resp = await axios.get("admin/index");
-    commit(types.GET_ADMIN, resp.data.admin);
-  },
-  async [types.GET_STUDENTS_ADMIN]({ commit }) {
-    let resp = await axios.get("admin/students");
-    commit(types.GET_STUDENTS_ADMIN, resp.data.students);
-  },
-  async [types.ADD_STUDENT_ADMIN]({ commit }, data) {
-    let resp = await axios.post("admin/student", data);
-    commit(types.GET_STUDENTS_ADMIN, resp.data.students);
-  },
-  async [types.ADD_STUDENTSINFO_ADMIN]({ commit }, data) {
-    let resp = await axios.post("admin/studentInformation", data);
-    commit(types.GET_STUDENTS_ADMIN, resp.data.students);
-  },
-  async [types.DELETE_STUDENT_ADMIN]({ commit }, data) {
-    console.log(data);
-    let resp = await axios.delete(`admin/student/${data.id}`);
-    commit(types.GET_STUDENTS_ADMIN, resp.data.students);
-  },
-  async [types.GET_ENTERPRISES_ADMIN]({ commit }) {
-    let resp = await axios.get("admin/enterprises");
-    commit(types.GET_ENTERPRISES_ADMIN, resp.data.enterprises);
-  },
-  async [types.ADD_ENTERPRISE_ADMIN]({ commit }, data) {
-    let resp = await axios.post("admin/enterprise", data);
-    commit(types.GET_ENTERPRISES_ADMIN, resp.data.enterprises);
-  },
-  async [types.DELETE_ENTERPRISE_ADMIN]({ commit }, data) {
-    let resp = await axios.delete(`admin/enterprise/${data.id}`);
-    commit(types.GET_ENTERPRISES_ADMIN, resp.data.enterprises);
-  },
-  async [types.GET_INDEX_STUDENT]({ commit }) {
-    let resp = await axios.get("student/index");
-    commit(types.GET_STUDENT, resp.data.student);
-    commit(types.GET_POSTS_STUDENT, resp.data.posts);
-  },
+  //-------Admin-------
+
   //-------Company-------
   async [types.REGISTER_COMPANY]({ commit }, data) {
     let resp = await axios.post("register/company", data);
     commit(types.REGISTER_COMPANY, resp.data.company);
     commit(types.UPDATE_USER, resp.data.company);
+  },
+  async [types.UPDATE_PASSWORD_COMPANY]({ commit }, data) {
+    console.log(data);
+    let resp = await axios.patch("company/password", data);
+    commit(types.GET_COMPANY, resp.data.company);
   },
   async [types.GET_INDEX_COMPANY]({ commit }) {
     let resp = await axios.get("company/index");
@@ -216,6 +205,57 @@ const myActions = {
   async [types.UPDATE_INFORMATION_COMPANY]({ commit }, data) {
     let resp = await axios.patch("company/information", data);
     commit(types.GET_COMPANY, resp.data.company);
+  },
+  //-------Student-------
+  async [types.REGISTER_STUDENT]({ commit }, data) {
+    console.log(data);
+    let resp = await axios.post("register/student", data);
+    commit(types.REGISTER_STUDENT, resp.data);
+    commit(types.UPDATE_USER, resp.data.student);
+  },
+  async [types.UPDATE_PASSWORD_STUDENT]({ commit }, data) {
+    console.log(data);
+    let resp = await axios.patch("student/password", data);
+    commit(types.GET_STUDENT, resp.data.student);
+  },
+  async [types.GET_INDEX_STUDENT]({ commit }) {
+    let resp = await axios.get("student/index");
+    commit(types.GET_STUDENT, resp.data.student);
+    commit(types.LIST_POSITIONS, resp.data.positions);
+    commit(types.LIST_PROFESSIONSMCLASS, resp.data.professionsMClass);
+  },
+  async [types.UPDATE_INFORMATION_STUDENT]({ commit }, data) {
+    let resp = await axios.patch("student/information", data);
+    commit(types.GET_STUDENT, resp.data.student);
+  },
+  async [types.LIST_RESUMES_STUDENT]({ commit }) {
+    let resp = await axios.get("student/resumes");
+    commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
+  },
+  async [types.ADD_RESUME_STUDENT]({ commit }, data) {
+    let resp = await axios.post("student/resume", data);
+    commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
+  },
+  async [types.DELETE_RESUME_STUDENT]({ commit }, data) {
+    let resp = await axios.delete(`student/resume/${data.rid}`);
+    commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
+  },
+  async [types.UPDATE_RESUME_STUDENT]({ commit }, data) {
+    let resp = await axios.patch("student/resume", data);
+    commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
+  },
+  async [types.ADD_STUDENTRESUME_STUDENT]({ commit }, data) {
+    console.log(data);
+    let resp = await axios.post("student/studentResume", data);
+    commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
+  },
+  async [types.DELETE_STUDENTRESUME_STUDENT]({ commit }, data) {
+    let resp = await axios.delete(`student/studentResume/${data.rid}`);
+    commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
+  },
+  async [types.MATCH_STUDENTRESUME_STUDENT]({ commit }) {
+    let resp = await axios.get("student/jmr");
+    commit(types.MATCH_STUDENTRESUME_STUDENT, resp.data.jobMatchResults);
   }
 };
 export default new Vuex.Store({

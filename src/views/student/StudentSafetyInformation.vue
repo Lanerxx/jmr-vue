@@ -1,12 +1,15 @@
 <template>
   <div>
+    {{ this.oldPassword }}
+    {{ this.newPassword }}
+    {{ this.newPasswordR }}
     <v-expansion-panels v-model="panel" :readonly="readonly" multiple>
       <v-expansion-panel>
         <v-expansion-panel-header>
-          --- 企业号 : {{ company.c_s_code }}
+          --- 学号 : 暂无
         </v-expansion-panel-header>
         <v-expansion-panel-content>
-          企业统一社会信用代码作为企业的唯一标识，不可更改。
+          学号作为学生的唯一标识，不可更改。
         </v-expansion-panel-content>
       </v-expansion-panel>
 
@@ -38,8 +41,6 @@
                     label="请输入旧密码"
                     required
                     type="password"
-                    @input="$v.oldPassword.$touch()"
-                    @blur="$v.oldPassword.$touch()"
                   ></v-text-field>
                   <v-text-field
                     color="teal"
@@ -47,8 +48,6 @@
                     label="请输入新密码"
                     required
                     type="password"
-                    @input="$v.newPassword.$touch()"
-                    @blur="$v.newPassword.$touch()"
                   ></v-text-field>
                   <v-text-field
                     color="teal"
@@ -56,8 +55,6 @@
                     label="请重复输入新密码"
                     required
                     type="password"
-                    @input="$v.newPasswordR.$touch()"
-                    @blur="$v.newPasswordR.$touch()"
                   ></v-text-field>
                   <v-spacer></v-spacer>
                 </form>
@@ -81,7 +78,7 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header>
-          --- 手机号 : {{ company.c_telephone }}
+          --- 手机号 : {{ student.s_telephone }}
         </v-expansion-panel-header>
         <v-expansion-panel-content>
           待扩张····
@@ -92,8 +89,10 @@
 </template>
 
 <script>
-import { GET_INDEX_COMPANY } from "@/store/types.js";
-import { UPDATE_PASSWORD } from "@/store/types.js";
+import { GET_INDEX_STUDENT } from "@/store/types.js";
+import { UPDATE_PASSWORD_STUDENT } from "@/store/types.js";
+import { GET_EXCEPTION } from "@/store/types.js";
+
 import { mapState } from "vuex";
 
 export default {
@@ -106,20 +105,29 @@ export default {
     readonly: true
   }),
   created() {
-    this.$store.dispatch(GET_INDEX_COMPANY);
+    this.$store.dispatch(GET_INDEX_STUDENT);
   },
 
   computed: {
-    ...mapState(["company"])
+    ...mapState(["student"])
   },
   methods: {
     updatePsw() {
       this.dialog = false;
-      this.$store.dispatch(UPDATE_PASSWORD, {
-        oldPassword: this.oldPassword,
-        newPassword: this.newPassword,
-        newPasswordR: this.newPasswordR
-      });
+      var flag = true;
+      if (this.newPassword != this.newPasswordR) {
+        flag = false;
+      }
+      if (flag) {
+        this.$store.dispatch(UPDATE_PASSWORD_STUDENT, {
+          oldPassword: this.oldPassword,
+          newPassword: this.newPassword
+        });
+      } else {
+        this.$store.commit(GET_EXCEPTION, {
+          message: "两次输入的密码不一致"
+        });
+      }
     }
   }
 };
