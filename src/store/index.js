@@ -73,6 +73,24 @@ const myMutations = {
   [types.CERTI_JOB_DIRECTOR](state, data) {
     state.isJobDirector = data;
   },
+  [types.LIST_JOB_MATCH_RESULT_JOB_DIRECTOR](state, data) {
+    state.jobMatchResults = data;
+  },
+  [types.LIST_STUDENTS_JOB_DIRECTOR](state, data) {
+    state.students = data;
+  },
+  [types.GET_STUDENT_JOB_DIRECTOR](state, data) {
+    state.student = data;
+  },
+  [types.LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR](state, data) {
+    state.studentMatchResults = data;
+  },
+  [types.LIST_COMPANIES_JOB_DIRECTOR](state, data) {
+    state.companies = data;
+  },
+  [types.GET_COMPANY_JOB_DIRECTOR](state, data) {
+    state.company = data;
+  },
   //company
   [types.CERTI_COMPANY](state, data) {
     state.isCompany = data;
@@ -206,6 +224,7 @@ const myActions = {
     let resp = await axios.patch("company/information", data);
     commit(types.GET_COMPANY, resp.data.company);
   },
+
   //-------Student-------
   async [types.REGISTER_STUDENT]({ commit }, data) {
     console.log(data);
@@ -256,6 +275,35 @@ const myActions = {
   async [types.MATCH_STUDENTRESUME_STUDENT]({ commit }) {
     let resp = await axios.get("student/jmr");
     commit(types.MATCH_STUDENTRESUME_STUDENT, resp.data.jobMatchResults);
+  },
+
+  //-------JobDirector-------
+  async [types.LIST_STUDENTS_JOB_DIRECTOR]({ commit }) {
+    let resp = await axios.get("jobDirector/students");
+    commit(types.LIST_STUDENTS_JOB_DIRECTOR, resp.data.students);
+  },
+  async [types.LIST_JOB_MATCH_RESULT_JOB_DIRECTOR]({ commit }, data) {
+    let resp = await axios.get(`jobDirector/jmr/${data.sid}`);
+    commit(types.LIST_JOB_MATCH_RESULT_JOB_DIRECTOR, resp.data.jobMatchResults);
+  },
+  async [types.GET_STUDENT_JOB_DIRECTOR]({ commit }, data) {
+    let resp = await axios.get(`jobDirector/student/${data.sid}`);
+    commit(types.GET_STUDENT_JOB_DIRECTOR, resp.data.student);
+  },
+  async [types.LIST_COMPANIES_JOB_DIRECTOR]({ commit }) {
+    let resp = await axios.get("jobDirector/companies");
+    commit(types.LIST_COMPANIES_JOB_DIRECTOR, resp.data.companies);
+  },
+  async [types.LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR]({ commit }, data) {
+    let resp = await axios.get(`jobDirector/smr/${data.cid}`);
+    commit(
+      types.LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR,
+      resp.data.studentMatchResults
+    );
+  },
+  async [types.GET_COMPANY_JOB_DIRECTOR]({ commit }, data) {
+    let resp = await axios.get(`jobDirector/company/${data.cid}`);
+    commit(types.GET_COMPANY_JOB_DIRECTOR, resp.data.company);
   }
 };
 export default new Vuex.Store({

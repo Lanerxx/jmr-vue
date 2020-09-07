@@ -81,7 +81,53 @@ let companyRoutes = [
   }
 ];
 
-let jobDirectorRoutes = [];
+let jobDirectorRoutes = [
+  {
+    path: "/jobDirectorBasicInformation",
+    component: () => import("@/views/jobDirector/JobDirectorBasicInformation")
+  },
+  {
+    path: "/jobDirectorCompanyStatistics",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorCompanyStatistics.vue")
+  },
+  {
+    path: "/jobDirectorCompanyJob",
+    component: () => import("@/views/jobDirector/JobDirectorCompanyJob.vue")
+  },
+  {
+    path: "/jobDirectorJobMatchResult",
+    component: () => import("@/views/jobDirector/JobDirectorJobMatchResult.vue")
+  },
+  {
+    path: "/jobDirectorJobMatchResult/:sid",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorStudentJobMatchResult.vue")
+  },
+  {
+    path: "/jobDirectorSafetyInformation",
+    component: () => import("@/views/jobDirector/JobDirectorSafetyInformation")
+  },
+  {
+    path: "/jobDirectorStudentMatchResult",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorStudentMatchResult.vue")
+  },
+  {
+    path: "/jobDirectorStudentMatchResult/:cid",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorCompanyStudentMatchResult.vue")
+  },
+  {
+    path: "/jobDirectorStudentResume",
+    component: () => import("@/views/jobDirector/JobDirectorStudentResume.vue")
+  },
+  {
+    path: "/jobDirectorStudentStatistics",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorStudentStatistics.vue")
+  }
+];
 
 // 必须与后端提前约定。按角色，动态加载路由信息
 // 使其他角色即使知道路由路径，也无法加载对应的组件

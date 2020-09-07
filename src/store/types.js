@@ -16,17 +16,6 @@ export const ADD_STUDENT_ADMIN = "addStudentByAdmin";
 export const DELETE_STUDENT_ADMIN = "deleteStudentByAdmin";
 export const ADD_STUDENTSINFO_ADMIN = "addStudentsInfoByAdmin";
 
-export const DOWNLOAD_RESUME_ENTERPRISE = "downloadResumeByEnterprise";
-export const GET_ENTERPRISE = "getEnterprise";
-export const GET_MYPOSTS_ENTERPRISE = "getMySPostsByEnterprise";
-export const GET_INDEX_ENTERPRISE = "getEnterprseIndex";
-export const GET_INDEX_ENTERPRISE_IM = "getEnterprseIndexIm";
-
-export const LIST_POSTS_ENTERPRISE = "listPostsByEnterprise";
-export const UPDATE_POST_ENTERPRISE = "updatePostByEnterprise";
-export const ADD_POST_ENTERPRISE = "addPostByEnterprise";
-export const DELETE_POST_ENTERPRISE = "deletePostByEnterprise";
-
 export const GET_EXCEPTION = "getException";
 export const CERTI_COMPANY = "certificateCompany";
 export const CERTI_STUDENT = "certificateStudent";
@@ -62,3 +51,16 @@ export const UPDATE_RESUME_STUDENT = "updateResumeByStudent";
 export const ADD_STUDENTRESUME_STUDENT = "addStudentResumeByStudent";
 export const DELETE_STUDENTRESUME_STUDENT = "deleteStudentResumeByStudent";
 export const MATCH_STUDENTRESUME_STUDENT = "matchStudentResumeByStudent";
+
+export const GET_JOB_DIRECTOR = "getJobDirector";
+export const UPDATE_PASSWORD_JOB_DIRECTOR = "updatePasswordByJobDirector";
+export const GET_INDEX_JOB_DIRECTOR = "getIndexJobDirector";
+export const UPDATE_INFORMATION_JOB_DIRECTOR = "updateJobDirectorInformation";
+export const LIST_STUDENTS_JOB_DIRECTOR = "getStudentsByJobDirector";
+export const GET_STUDENT_JOB_DIRECTOR = "getStudentByJobDirector";
+export const LIST_COMPANIES_JOB_DIRECTOR = "getCompaniesByJobDirector";
+export const GET_COMPANY_JOB_DIRECTOR = "getCompanyByJobDirector";
+export const LIST_JOB_MATCH_RESULT_JOB_DIRECTOR =
+  "getJobMatchResultsByJobDirector";
+export const LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR =
+  "getStudentMatchResultsByJobDirector";

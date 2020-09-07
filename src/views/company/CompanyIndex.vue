@@ -8,7 +8,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-account-circle</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>基础信息</v-list-item-title>
+              <v-list-item-title>公司信息</v-list-item-title>
             </v-list-item>
 
             <v-list-item to="/companyJobInformation">
