@@ -3,7 +3,7 @@
     <v-data-table
       :headers="headers"
       :items="companies"
-      sort-by="c_name"
+      sort-by="c_s_code"
       class="elevation-1"
       :search="search"
     >

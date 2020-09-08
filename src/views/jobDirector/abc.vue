@@ -1,7 +1,5 @@
 <template>
   <div>
-    {{ studentMatchResults }}
-    asdasdsdsds
     <v-data-table
       :headers="headers"
       :items="studentMatchResults"
@@ -51,7 +49,7 @@
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         readonly
-                        v-model="smr_student.s_name"
+                        v-model="editedItem.smr_student.s_name"
                         label="姓名*"
                         color="teal"
                       ></v-text-field>
@@ -59,14 +57,14 @@
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         label="性别*"
-                        v-model="smr_student.s_sex"
+                        v-model="editedItem.smr_student.s_sex"
                         readonly
                         color="teal"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="smr_student.s_birthday"
+                        v-model="editedItem.smr_student.s_birthday"
                         label="出生年月*"
                         color="teal"
                       ></v-text-field>
@@ -76,7 +74,7 @@
                   <v-row>
                     <v-col cols="12" sm="4" md="4">
                       <v-text-field
-                        v-model="smr_student.s_college"
+                        v-model="editedItem.smr_student.s_college"
                         label="毕业院校*"
                         color="teal"
                       ></v-text-field>
@@ -84,7 +82,7 @@
                     <v-col cols="12" sm="4" md="4">
                       <v-text-field
                         readonly
-                        v-model="smr_student.s_c_level"
+                        v-model="editedItem.smr_student.s_c_level"
                         label="院校等级*"
                         color="teal"
                       ></v-text-field>
@@ -93,7 +91,7 @@
                       <v-text-field
                         readonly
                         color="teal"
-                        v-model="smr_student.s_e_history"
+                        v-model="editedItem.smr_student.s_e_history"
                         label="学历*"
                       ></v-text-field>
                     </v-col>
@@ -103,7 +101,7 @@
                     <v-col cols="12" sm="6" md="6">
                       <v-text-field
                         readonly
-                        v-model="smr_student.s_profession.p_m_class"
+                        v-model="editedItem.smr_student.s_profession.p_m_class"
                         label="专业大类*"
                         color="teal"
                       ></v-text-field>
@@ -112,7 +110,7 @@
                       <v-text-field
                         readonly
                         label="专业小类*"
-                        v-model="smr_student.s_profession.p_s_class"
+                        v-model="editedItem.smr_student.s_profession.p_s_class"
                         color="teal"
                       ></v-text-field>
                     </v-col>
@@ -132,21 +130,21 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="smr_student.s_id_card"
+                        v-model="editedItem.smr_student.s_id_card"
                         label="身份证号码"
                         hint="非必填"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="smr_student.s_n_province"
+                        v-model="editedItem.smr_student.s_n_province"
                         label="籍贯-省份*"
                         color="teal"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="smr_student.s_n_city"
+                        v-model="editedItem.smr_student.s_n_city"
                         label="籍贯-地级市*"
                         color="teal"
                       ></v-text-field>
@@ -158,14 +156,14 @@
                       <v-text-field
                         readonly
                         color="teal"
-                        v-model="smr_student.s_e_city"
+                        v-model="editedItem.smr_student.s_e_city"
                         label="就业意向地*"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         readonly
-                        v-model="smr_student.s_s_range"
+                        v-model="editedItem.smr_student.s_s_range"
                         label="期望薪资*"
                         color="teal"
                       ></v-text-field>
@@ -174,7 +172,7 @@
                       <v-text-field
                         readonly
                         label="期望岗位*"
-                        v-model="smr_student.s_e_position.p_name"
+                        v-model="editedItem.smr_student.s_e_position.p_name"
                         color="teal"
                       ></v-text-field>
                     </v-col>
@@ -184,14 +182,14 @@
                     <v-col cols="12" sm="6" md="6">
                       <v-text-field
                         readonly
-                        v-model="smr_student.s_telephone"
+                        v-model="editedItem.smr_student.s_telephone"
                         label="电话*"
                         color="teal"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
                       <v-text-field
-                        v-model="smr_student.s_email"
+                        v-model="editedItem.smr_student.s_email"
                         color="teal"
                         label="邮箱*"
                       ></v-text-field>
@@ -201,14 +199,14 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="6">
                       <v-text-field
-                        v-model="smr_student.s_g_time"
+                        v-model="editedItem.smr_student.s_g_time"
                         label="毕业时间*"
                         color="teal"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
                       <v-text-field
-                        v-model="smr_student.s_s_attachment"
+                        v-model="editedItem.smr_student.s_s_attachment"
                         label="成绩单附件地址"
                         hint="非必填"
                       ></v-text-field>
@@ -219,7 +217,7 @@
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         readonly
-                        v-model="smr_student.s_if_work"
+                        v-model="editedItem.smr_student.s_if_work"
                         label="是否就业*"
                         color="teal"
                       ></v-text-field>
@@ -228,10 +226,10 @@
                       cols="12"
                       sm="6"
                       md="4"
-                      v-if="smr_student.s_if_work == '已就业'"
+                      v-if="editedItem.smr_student.s_if_work == '已就业'"
                     >
                       <v-text-field
-                        v-model="smr_student.s_w_city"
+                        v-model="editedItem.smr_student.s_w_city"
                         label="就业地级市"
                         hint="已就业者必填"
                       ></v-text-field>
@@ -240,10 +238,10 @@
                       cols="12"
                       sm="6"
                       md="4"
-                      v-if="smr_student.s_if_work == '已就业'"
+                      v-if="editedItem.smr_student.s_if_work == '已就业'"
                     >
                       <v-text-field
-                        v-model="smr_student.s_company"
+                        v-model="editedItem.smr_student.s_company"
                         label="就业企业"
                         hint="已就业者必填"
                       ></v-text-field>
@@ -270,218 +268,86 @@
     <p class="font-weight-thin text-end">
       ps : 若无匹配信息，则公司可能未发布岗位。
     </p>
-    <!-- 
+
     <v-row>
       <v-col cols="12">
         <v-sheet elevation="1" class="pa-12">
           <v-row>
-            <v-col cols="12" sm="6" md="4">
+            <v-col cols="2">
+              <v-subheader>企业名</v-subheader>
+            </v-col>
+            <v-col cols="4">
               <v-text-field
                 readonly
-                v-model="student.s_name"
-                label="姓名*"
                 color="teal"
+                label="Name"
+                v-model="company.c_name"
               ></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_sex"
-                label="性别*"
-                color="teal"
-              ></v-text-field>
+            <v-col cols="2">
+              <v-subheader>统一社会信用码</v-subheader>
             </v-col>
-            <v-col cols="12" sm="6" md="4">
+            <v-col cols="4">
               <v-text-field
-                readonly
-                v-model="student.s_birthday"
-                label="出生年月*"
+                readonly=""
                 color="teal"
+                label="Code"
+                v-model="company.c_s_code"
               ></v-text-field>
             </v-col>
           </v-row>
 
           <v-row>
-            <v-col cols="12" sm="4" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_college"
-                label="毕业院校*"
-                color="teal"
-              ></v-text-field>
+            <v-col cols="2">
+              <v-subheader>企业详情</v-subheader>
             </v-col>
-            <v-col cols="12" sm="4" md="4">
+            <v-col cols="10">
               <v-text-field
-                v-model="student.s_c_level"
-                label="院校等级*"
-                readonly
                 color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="4" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_e_history"
-                label="学历*"
-                color="teal"
+                label="Detail"
+                v-model="company.c_description"
               ></v-text-field>
             </v-col>
           </v-row>
 
           <v-row>
-            <v-col cols="12" sm="6" md="6">
+            <v-col cols="2">
+              <v-subheader>联系人</v-subheader>
+            </v-col>
+            <v-col cols="4">
               <v-text-field
-                readonly
-                v-model="student.s_profession.p_m_class"
-                label="专业大类*"
                 color="teal"
+                label="Contact"
+                v-model="company.c_contact"
               ></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6" md="6">
+            <v-col cols="2">
+              <v-subheader>联系电话</v-subheader>
+            </v-col>
+            <v-col cols="4">
               <v-text-field
-                readonly
-                v-model="student.s_profession.p_s_class"
-                label="专业小类*"
+                readonly=""
                 color="teal"
+                label="Telephone"
+                v-model="company.c_telephone"
               ></v-text-field>
             </v-col>
           </v-row>
-
           <v-row>
-            <v-col cols="12" sm="6" md="6">
-              英语等级*：
-              <v-radio-group v-model="CET" row readonly>
-                <v-radio color="teal" label="英语四级" value="CET4"></v-radio>
-                <v-radio color="teal" label="英语六级" value="CET6"></v-radio>
-                <v-radio color="teal" label="无" value="NONE"></v-radio>
-              </v-radio-group>
-              英语等级*:
-              <v-radio-group v-model="JN" row readonly>
-                <v-radio color="teal" label="日语二级" value="JN2"></v-radio>
-                <v-radio color="teal" label="日语三级" value="JN3"></v-radio>
-                <v-radio color="teal" label="无" value="NONE"></v-radio>
-              </v-radio-group>
+            <v-col cols="2">
+              <v-subheader>邮箱</v-subheader>
             </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6" md="4">
+            <v-col cols="10">
               <v-text-field
-                v-model="student.s_id_card"
-                label="身份证号码"
-                readonly
-                hint="非必填"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_n_province"
-                label="籍贯-省份*"
                 color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_n_city"
-                label="籍贯-地级市*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_e_city"
-                label="就业意向地*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                v-model="student.s_s_range"
-                readonly
-                label="期望薪资*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_e_position.p_name"
-                label="期望岗位*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                readonly
-                v-model="student.s_telephone"
-                label="电话*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                readonly
-                v-model="student.s_email"
-                color="teal"
-                label="邮箱*"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                readonly
-                v-model="student.s_g_time"
-                label="毕业时间*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-              <v-text-field
-                readonly
-                v-model="student.s_s_attachment"
-                label="成绩单附件地址"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                readonly
-                v-model="student.s_if_work"
-                label="是否就业*"
-                color="teal"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4" v-if="student.s_if_work == '已就业'">
-              <v-text-field
-                readonly
-                v-model="student.s_w_city"
-                label="就业地级市"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4" v-if="student.s_if_work == '已就业'">
-              <v-text-field
-                readonly
-                v-model="student.s_company"
-                label="就业企业"
+                label="Email"
+                v-model="company.c_email"
               ></v-text-field>
             </v-col>
           </v-row>
         </v-sheet>
       </v-col>
-    </v-row> -->
+    </v-row>
   </div>
 </template>
 
@@ -511,19 +377,21 @@ export default {
         value: "smr_student.s_name"
       },
       { text: "匹配值", value: "smr_value" },
-      { text: "学校", value: "smr_value.s_college" },
-      { text: "学校等级", value: "smr_student.s_college" },
+      { text: "学校", value: "smr_student.s_college" },
+      { text: "学校等级", value: "smr_student.s_c_level" },
       { text: "学历", value: "smr_student.s_e_history" },
       { text: "专业", value: "smr_student.s_profession.p_s_class" },
       { text: "操作", value: "actions", sortable: false }
     ],
     editedIndex: -1,
     editedItem: {
-      jmr_job: {
-        j_profession: { p_s_class: "" },
-        j_position: { p_name: "" }
+      smr_student: {
+        s_name: "",
+        s_profession: { p_s_class: "" },
+        s_e_position: { p_name: "" }
       },
-      jmr_company: {}
+      smr_company: {},
+      smr_job: {}
     },
     CET: "NONE",
     JN: "NONE"

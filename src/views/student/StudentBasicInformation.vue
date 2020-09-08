@@ -252,13 +252,11 @@ export default {
   }),
   created() {
     this.$store.dispatch(GET_INDEX_STUDENT);
-    console.log(this.student.s_profession.p_m_class);
     this.$store.dispatch(GET_REGISTER_INDEX_SCLASS, {
       p_id: null,
       p_m_class: this.student.s_profession.p_m_class,
       p_s_class: "无"
     });
-    console.log(this.student.s_f_language);
     switch (this.student.s_f_language) {
       case 1:
         this.CET = "CET4";
@@ -371,13 +369,11 @@ export default {
 
     reset() {
       this.$store.dispatch(GET_INDEX_STUDENT);
-      console.log(this.student.s_profession.p_m_class);
       this.$store.dispatch(GET_REGISTER_INDEX_SCLASS, {
         p_id: null,
         p_m_class: this.student.s_profession.p_m_class,
         p_s_class: "无"
       });
-      console.log(this.student.s_f_language);
       this.jFLanguageR();
     },
     submit() {

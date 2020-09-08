@@ -57,8 +57,11 @@ export const UPDATE_PASSWORD_JOB_DIRECTOR = "updatePasswordByJobDirector";
 export const GET_INDEX_JOB_DIRECTOR = "getIndexJobDirector";
 export const UPDATE_INFORMATION_JOB_DIRECTOR = "updateJobDirectorInformation";
 export const LIST_STUDENTS_JOB_DIRECTOR = "getStudentsByJobDirector";
+export const LIST_STUDENTRESUMES_JOB_DIRECTOR =
+  "getStudentResumesByJobDirector";
 export const GET_STUDENT_JOB_DIRECTOR = "getStudentByJobDirector";
 export const LIST_COMPANIES_JOB_DIRECTOR = "getCompaniesByJobDirector";
+export const LIST_COMPANYJOBS_JOB_DIRECTOR = "getCompanyJobsByJobDirector";
 export const GET_COMPANY_JOB_DIRECTOR = "getCompanyByJobDirector";
 export const LIST_JOB_MATCH_RESULT_JOB_DIRECTOR =
   "getJobMatchResultsByJobDirector";

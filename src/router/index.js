@@ -96,6 +96,11 @@ let jobDirectorRoutes = [
     component: () => import("@/views/jobDirector/JobDirectorCompanyJob.vue")
   },
   {
+    path: "/jobDirectorCompanyJobDetail/:cid",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorCompanyJobDetail.vue")
+  },
+  {
     path: "/jobDirectorJobMatchResult",
     component: () => import("@/views/jobDirector/JobDirectorJobMatchResult.vue")
   },
@@ -115,12 +120,16 @@ let jobDirectorRoutes = [
   },
   {
     path: "/jobDirectorStudentMatchResult/:cid",
-    component: () =>
-      import("@/views/jobDirector/JobDirectorCompanyStudentMatchResult.vue")
+    component: () => import("@/views/jobDirector/abc.vue")
   },
   {
     path: "/jobDirectorStudentResume",
     component: () => import("@/views/jobDirector/JobDirectorStudentResume.vue")
+  },
+  {
+    path: "/jobDirectorStudentResumeDetail/:sid",
+    component: () =>
+      import("@/views/jobDirector/JobDirectorStudentResumeDetail.vue")
   },
   {
     path: "/jobDirectorStudentStatistics",
