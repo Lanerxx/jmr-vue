@@ -215,6 +215,7 @@
             </v-col>
             <v-col cols="10">
               <v-text-field
+                readonly
                 color="teal"
                 label="Detail"
                 v-model="company.c_description"
@@ -228,6 +229,7 @@
             </v-col>
             <v-col cols="4">
               <v-text-field
+                readonly
                 color="teal"
                 label="Contact"
                 v-model="company.c_contact"
@@ -252,6 +254,7 @@
             <v-col cols="10">
               <v-text-field
                 color="teal"
+                readonly
                 label="Email"
                 v-model="company.c_email"
               ></v-text-field>

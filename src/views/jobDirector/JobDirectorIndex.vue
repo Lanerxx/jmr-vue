@@ -23,7 +23,7 @@
                 <v-list-item-title>工作区域</v-list-item-title>
               </template>
 
-              <v-list-group no-action sub-group value="true">
+              <v-list-group no-action sub-group>
                 <template v-slot:activator>
                   <v-list-item-content>
                     <v-list-item-title>信息预览</v-list-item-title>

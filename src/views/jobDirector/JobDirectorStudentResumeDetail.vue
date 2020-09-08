@@ -37,7 +37,7 @@
           <v-dialog v-model="dialog" max-width="800px">
             <v-card>
               <v-card-title>
-                <span class="headline">岗位详情</span>
+                <span class="headline">简历详情</span>
               </v-card-title>
 
               <v-card-text>
@@ -45,6 +45,7 @@
                   <v-row>
                     <v-col cols="12" sm="12" md="12">
                       <v-textarea
+                        readonly
                         counter
                         color="teal"
                         label="主修课程"
@@ -56,6 +57,7 @@
 
                     <v-col cols="12" sm="12" md="12">
                       <v-textarea
+                        readonly
                         counter
                         color="teal"
                         label="掌握技能"
@@ -68,6 +70,7 @@
                     <v-col cols="12" sm="12" md="12">
                       <v-textarea
                         counter
+                        readonly
                         color="teal"
                         label="专业证书"
                         :rules="sCertificateRules"
@@ -81,6 +84,7 @@
                         counter
                         color="teal"
                         label="获得荣誉/奖项"
+                        readonly
                         :rules="honorRules"
                         rows="1"
                         v-model="editedItem.resume.r_honor"
@@ -89,6 +93,7 @@
 
                     <v-col cols="12" sm="12" md="12">
                       <v-textarea
+                        readonly
                         counter
                         color="teal"
                         label="实习（或工作）经历"
@@ -101,6 +106,7 @@
                     <v-col cols="12" sm="12" md="12">
                       <v-textarea
                         counter
+                        readonly
                         color="teal"
                         label="项目经验"
                         :rules="pExperienceRules"
@@ -112,6 +118,7 @@
                     <v-col cols="12" sm="12" md="12">
                       <v-textarea
                         counter
+                        readonly
                         color="teal"
                         label="自我评价"
                         :rules="sEvaluateRules"
@@ -124,6 +131,7 @@
                       <v-textarea
                         counter
                         color="teal"
+                        readonly
                         label="备注"
                         :rules="remarkRules"
                         rows="2"
@@ -150,7 +158,7 @@
     </v-data-table>
     <br />
     <p class="font-weight-thin text-end">
-      ps : 若无岗位信息，则公司可能未发布岗位。
+      ps : 若无简历信息，则学生可能未发布简历。
     </p>
     <v-row>
       <v-col cols="12">
@@ -176,6 +184,7 @@
               <v-text-field
                 v-model="student.s_birthday"
                 label="出生年月*"
+                readonly
                 color="teal"
               ></v-text-field>
             </v-col>
@@ -186,6 +195,7 @@
               <v-text-field
                 v-model="student.s_college"
                 label="毕业院校*"
+                readonly
                 color="teal"
               ></v-text-field>
             </v-col>
@@ -242,6 +252,7 @@
               <v-text-field
                 v-model="student.s_id_card"
                 label="身份证号码"
+                readonly
                 hint="非必填"
               ></v-text-field>
             </v-col>
@@ -249,6 +260,7 @@
               <v-text-field
                 v-model="student.s_n_province"
                 label="籍贯-省份*"
+                readonly
                 color="teal"
               ></v-text-field>
             </v-col>
@@ -256,6 +268,7 @@
               <v-text-field
                 v-model="student.s_n_city"
                 label="籍贯-地级市*"
+                readonly
                 color="teal"
               ></v-text-field>
             </v-col>
@@ -300,6 +313,7 @@
             <v-col cols="12" sm="6" md="6">
               <v-text-field
                 v-model="student.s_email"
+                readonly
                 color="teal"
                 label="邮箱*"
               ></v-text-field>
@@ -310,6 +324,7 @@
             <v-col cols="12" sm="6" md="6">
               <v-text-field
                 v-model="student.s_g_time"
+                readonly
                 label="毕业时间*"
                 color="teal"
               ></v-text-field>
@@ -317,6 +332,7 @@
             <v-col cols="12" sm="6" md="6">
               <v-text-field
                 v-model="student.s_s_attachment"
+                readonly
                 label="成绩单附件地址"
                 hint="非必填"
               ></v-text-field>
@@ -335,6 +351,7 @@
             <v-col cols="12" sm="6" md="4" v-if="student.s_if_work == '已就业'">
               <v-text-field
                 v-model="student.s_w_city"
+                readonly
                 label="就业地级市"
                 hint="已就业者必填"
               ></v-text-field>
@@ -342,6 +359,7 @@
             <v-col cols="12" sm="6" md="4" v-if="student.s_if_work == '已就业'">
               <v-text-field
                 v-model="student.s_company"
+                readonly
                 label="就业企业"
                 hint="已就业者必填"
               ></v-text-field>

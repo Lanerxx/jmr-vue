@@ -12,7 +12,7 @@
     >
       <template v-slot:top>
         <v-toolbar flat color="white">
-          <v-toolbar-title>匹配岗位</v-toolbar-title>
+          <v-toolbar-title>匹配学生</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-btn color="rgba(0, 128, 128, 0.712)" text @click="reset">
             Reset The Table
@@ -66,6 +66,7 @@
                       <v-text-field
                         v-model="editedItem.smr_student.s_birthday"
                         label="出生年月*"
+                        readonly
                         color="teal"
                       ></v-text-field>
                     </v-col>
@@ -75,6 +76,7 @@
                     <v-col cols="12" sm="4" md="4">
                       <v-text-field
                         v-model="editedItem.smr_student.s_college"
+                        readonly
                         label="毕业院校*"
                         color="teal"
                       ></v-text-field>
@@ -132,12 +134,14 @@
                       <v-text-field
                         v-model="editedItem.smr_student.s_id_card"
                         label="身份证号码"
+                        readonly
                         hint="非必填"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.smr_student.s_n_province"
+                        readonly
                         label="籍贯-省份*"
                         color="teal"
                       ></v-text-field>
@@ -146,6 +150,7 @@
                       <v-text-field
                         v-model="editedItem.smr_student.s_n_city"
                         label="籍贯-地级市*"
+                        readonly
                         color="teal"
                       ></v-text-field>
                     </v-col>
@@ -191,6 +196,7 @@
                       <v-text-field
                         v-model="editedItem.smr_student.s_email"
                         color="teal"
+                        readonly
                         label="邮箱*"
                       ></v-text-field>
                     </v-col>
@@ -200,6 +206,7 @@
                     <v-col cols="12" sm="6" md="6">
                       <v-text-field
                         v-model="editedItem.smr_student.s_g_time"
+                        readonly
                         label="毕业时间*"
                         color="teal"
                       ></v-text-field>
@@ -208,6 +215,7 @@
                       <v-text-field
                         v-model="editedItem.smr_student.s_s_attachment"
                         label="成绩单附件地址"
+                        readonly
                         hint="非必填"
                       ></v-text-field>
                     </v-col>
@@ -230,6 +238,7 @@
                     >
                       <v-text-field
                         v-model="editedItem.smr_student.s_w_city"
+                        readonly
                         label="就业地级市"
                         hint="已就业者必填"
                       ></v-text-field>
@@ -242,6 +251,7 @@
                     >
                       <v-text-field
                         v-model="editedItem.smr_student.s_company"
+                        readonly
                         label="就业企业"
                         hint="已就业者必填"
                       ></v-text-field>
@@ -304,6 +314,7 @@
             <v-col cols="10">
               <v-text-field
                 color="teal"
+                readonly
                 label="Detail"
                 v-model="company.c_description"
               ></v-text-field>
@@ -317,6 +328,7 @@
             <v-col cols="4">
               <v-text-field
                 color="teal"
+                readonly
                 label="Contact"
                 v-model="company.c_contact"
               ></v-text-field>
@@ -340,6 +352,7 @@
             <v-col cols="10">
               <v-text-field
                 color="teal"
+                readonly
                 label="Email"
                 v-model="company.c_email"
               ></v-text-field>

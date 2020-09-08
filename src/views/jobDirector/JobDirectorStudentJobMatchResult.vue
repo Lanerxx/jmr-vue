@@ -200,6 +200,7 @@
                         v-model="editedItem.jmr_job.j_expire"
                         label="过期时间"
                         type="date"
+                        readonly=""
                         color="teal"
                       ></v-text-field>
                     </v-col>
