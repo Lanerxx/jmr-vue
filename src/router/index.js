@@ -41,7 +41,62 @@ export default router;
 // 后期追加的路由配置
 let systemAdminRoutes = [];
 
-let generalAdminRoutes = [];
+let generalAdminRoutes = [
+  {
+    path: "/generalAdminBasicInformation",
+    component: () => import("@/views/generalAdmin/GeneralAdminBasicInformation")
+  },
+  {
+    path: "/generalAdminCompanyInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminCompanyInformation")
+  },
+  {
+    path: "/generalAdminJobDirectorInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminJobDirectorInformation")
+  },
+  {
+    path: "/generalAdminStudentMatchResultInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminStudentMatchResultInformation")
+  },
+  {
+    path: "/generalAdminJobMatchResultInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminJobMatchResultInformation")
+  },
+  {
+    path: "/generalAdminPositionInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminPositionInformation")
+  },
+  {
+    path: "/generalAdminProfessionInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminProfessionInformation")
+  },
+  {
+    path: "/generalAdminSafetyInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminSafetyInformation")
+  },
+  {
+    path: "/generalAdminCompanyStatisticsInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminCompanyStatisticsInformation")
+  },
+  {
+    path: "/generalAdminStudentStatisticsInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminStudentStatistics")
+  },
+  {
+    path: "/generalAdminStudentInformation",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminStudentInformation")
+  }
+];
 
 let studentRoutes = [
   {
