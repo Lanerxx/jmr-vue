@@ -73,14 +73,14 @@
                   </v-list-item-content>
                 </template>
 
-                <v-list-item to="/jobDirectorStudentMatchResult">
+                <v-list-item to="/generalAdminStudentMatchResultInformation">
                   <v-list-item-title>SMR</v-list-item-title>
                   <v-list-item-icon>
                     <v-icon>mdi-domain</v-icon>
                   </v-list-item-icon>
                 </v-list-item>
 
-                <v-list-item to="/jobDirectorJobMatchResult">
+                <v-list-item to="/generalAdminJobMatchResultInformation">
                   <v-list-item-title>JMR</v-list-item-title>
                   <v-list-item-icon>
                     <v-icon>mdi-school</v-icon>
@@ -95,14 +95,14 @@
                   </v-list-item-content>
                 </template>
 
-                <v-list-item to="/jobDirectorCompanyStatistics">
+                <v-list-item to="/generalAdminCompanyStatisticsInformation">
                   <v-list-item-title>企业统计</v-list-item-title>
                   <v-list-item-icon>
                     <v-icon>mdi-domain</v-icon>
                   </v-list-item-icon>
                 </v-list-item>
 
-                <v-list-item to="/jobDirectorStudentStatistics">
+                <v-list-item to="/generalAdminStudentStatisticsInformation">
                   <v-list-item-title>高校统计</v-list-item-title>
                   <v-list-item-icon>
                     <v-icon>mdi-school</v-icon>

@@ -52,6 +52,11 @@ let generalAdminRoutes = [
       import("@/views/generalAdmin/GeneralAdminCompanyInformation")
   },
   {
+    path: "/generalAdminCompanyInformationDetail/:cid",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminCompanyInformationDetail.vue")
+  },
+  {
     path: "/generalAdminJobDirectorInformation",
     component: () =>
       import("@/views/generalAdmin/GeneralAdminJobDirectorInformation")
@@ -62,9 +67,23 @@ let generalAdminRoutes = [
       import("@/views/generalAdmin/GeneralAdminStudentMatchResultInformation")
   },
   {
+    path: "/generalAdminStudentMatchResultInformationDetail/:cid",
+    component: () =>
+      import(
+        "@/views/generalAdmin/GeneralAdminStudentMatchResultInformationDetail.vue"
+      )
+  },
+  {
     path: "/generalAdminJobMatchResultInformation",
     component: () =>
       import("@/views/generalAdmin/GeneralAdminJobMatchResultInformation")
+  },
+  {
+    path: "/generalAdminJobMatchResultInformationDetail/:sid",
+    component: () =>
+      import(
+        "@/views/generalAdmin/GeneralAdminJobMatchResultInformationDetail.vue"
+      )
   },
   {
     path: "/generalAdminPositionInformation",
@@ -76,6 +95,12 @@ let generalAdminRoutes = [
     component: () =>
       import("@/views/generalAdmin/GeneralAdminProfessionInformation")
   },
+  {
+    path: "/generalAdminProfessionInformationDetail/:pid",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminProfessionInformationDetail")
+  },
+
   {
     path: "/generalAdminSafetyInformation",
     component: () =>
@@ -95,6 +120,11 @@ let generalAdminRoutes = [
     path: "/generalAdminStudentInformation",
     component: () =>
       import("@/views/generalAdmin/GeneralAdminStudentInformation")
+  },
+  {
+    path: "/generalAdminStudentInformationDetail/:sid",
+    component: () =>
+      import("@/views/generalAdmin/GeneralAdminStudentInformationDetail.vue")
   }
 ];
 

@@ -1,16 +1,22 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="positions"
+    :items="professionsSClass"
     sort-by="calories"
     class="elevation-1"
     :search="search"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-toolbar-title>岗位管理</v-toolbar-title>
+        <v-toolbar-title>专业小类</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
-
+        <v-btn
+          color="rgba(0, 128, 128, 0.712)"
+          text
+          to="/generalAdminProfessionInformation"
+        >
+          返回大类
+        </v-btn>
         <v-btn color="rgba(0, 128, 128, 0.712)" text @click="reset">
           Reset The Table
         </v-btn>
@@ -47,8 +53,8 @@
                   <v-col cols="12" sm="12" md="12">
                     <v-text-field
                       color="teal"
-                      v-model="editedItem.p_name"
-                      label="岗位名"
+                      v-model="editedItem.p_s_class"
+                      label="专业小类名"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -79,39 +85,44 @@
 </template>
 
 <script>
-import { LIST_POSITIONS_ADMIN } from "@/store/types.js";
+import { LIST_PROFESSIONSSCLASS_ADMIN } from "@/store/types.js";
 
 import { mapState } from "vuex";
 export default {
+  props: ["pid"],
+
   data: () => ({
     search: "",
     dialog: false,
     headers: [
       {
-        text: "岗位名",
+        text: "专业小类",
         align: "start",
         sortable: false,
-        value: "p_name"
+        value: "p_s_class"
       },
       { text: "操作", value: "actions", sortable: false }
     ],
     editedIndex: -1,
     editedItem: {
-      p_name: ""
+      p_s_class: ""
     },
     defaultItem: {
-      p_name: ""
+      p_s_class: ""
     }
   }),
-
+  created() {
+    this.$store.dispatch(LIST_PROFESSIONSSCLASS_ADMIN, {
+      p_id: this.$route.params.pid,
+      p_m_class: "无",
+      p_s_class: "无"
+    });
+  },
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
     },
-    ...mapState(["positions"])
-  },
-  created() {
-    this.$store.dispatch(LIST_POSITIONS_ADMIN);
+    ...mapState(["professionsSClass"])
   },
 
   watch: {
@@ -122,19 +133,23 @@ export default {
 
   methods: {
     reset() {
-      this.$store.dispatch(LIST_POSITIONS_ADMIN);
+      this.$store.dispatch(LIST_PROFESSIONSSCLASS_ADMIN, {
+        p_id: this.$route.params.pid,
+        p_m_class: "无",
+        p_s_class: "无"
+      });
     },
 
     editItem(item) {
-      this.editedIndex = this.positions.indexOf(item);
+      this.editedIndex = this.professionsSClass.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      const index = this.positions.indexOf(item);
+      const index = this.professionsSClass.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
-        this.positions.splice(index, 1);
+        this.professionsSClass.splice(index, 1);
     },
 
     close() {
@@ -147,9 +162,12 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.positions[this.editedIndex], this.editedItem);
+        Object.assign(
+          this.professionsSClass[this.editedIndex],
+          this.editedItem
+        );
       } else {
-        this.positions.push(this.editedItem);
+        this.professionsSClass.push(this.editedItem);
       }
       this.close();
     }

@@ -12,7 +12,9 @@ const myState = {
   isLogin: false,
   user: null,
   positions: [],
+  professions: [],
   professionsMClass: [],
+  professionMClassVos: [],
   professionsSClass: [],
   flag: null,
 
@@ -21,9 +23,11 @@ const myState = {
 
   //general-admin
   isGeneralAdmin: false,
+  generalAdmins: [],
 
   //job-director
   isJobDirector: false,
+  jobDirectors: [],
 
   //company
   isCompany: false,
@@ -52,6 +56,30 @@ const myMutations = {
   [types.UPDATE_USER](state, data) {
     state.user = data;
   },
+  [types.LIST_STUDENTS](state, data) {
+    state.students = data;
+  },
+  [types.GET_STUDENT](state, data) {
+    state.student = data;
+  },
+  [types.LIST_COMPANIES](state, data) {
+    state.companies = data;
+  },
+  [types.GET_COMPANY](state, data) {
+    state.company = data;
+  },
+  [types.LIST_JOB_MATCH_RESULT](state, data) {
+    state.jobMatchResults = data;
+  },
+  [types.LIST_STUDENT_MATCH_RESULT](state, data) {
+    state.studentMatchResults = data;
+  },
+  [types.LIST_STUDENTRESUMES](state, data) {
+    state.studentResumes = data;
+  },
+  [types.LIST_COMPANYJOBS](state, data) {
+    state.companyJobs = data;
+  },
   //position
   [types.LIST_POSITIONS](state, data) {
     state.positions = data;
@@ -71,34 +99,15 @@ const myMutations = {
   [types.CERTI_GENERAL_ADMIN](state, data) {
     state.isGeneralAdmin = data;
   },
+  [types.LIST_PROFESIONMCALSSVO_ADMIN](state, data) {
+    state.professionMClassVos = data;
+  },
+  [types.LIST_JOB_DIRECOR_ADMIN](state, data) {
+    state.jobDirectors = data;
+  },
   //job-director
   [types.CERTI_JOB_DIRECTOR](state, data) {
     state.isJobDirector = data;
-  },
-  [types.LIST_JOB_MATCH_RESULT_JOB_DIRECTOR](state, data) {
-    state.jobMatchResults = data;
-  },
-  [types.LIST_STUDENTS_JOB_DIRECTOR](state, data) {
-    state.students = data;
-  },
-  [types.GET_STUDENT_JOB_DIRECTOR](state, data) {
-    console.log("state data" + data);
-    state.student = data;
-  },
-  [types.LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR](state, data) {
-    state.studentMatchResults = data;
-  },
-  [types.LIST_COMPANIES_JOB_DIRECTOR](state, data) {
-    state.companies = data;
-  },
-  [types.GET_COMPANY_JOB_DIRECTOR](state, data) {
-    state.company = data;
-  },
-  [types.LIST_STUDENTRESUMES_JOB_DIRECTOR](state, data) {
-    state.studentResumes = data;
-  },
-  [types.LIST_COMPANYJOBS_JOB_DIRECTOR](state, data) {
-    state.companyJobs = data;
   },
   //company
   [types.CERTI_COMPANY](state, data) {
@@ -107,21 +116,14 @@ const myMutations = {
   [types.REGISTER_COMPANY](state, data) {
     state.company = data;
   },
-  [types.GET_COMPANY](state, data) {
-    state.company = data;
-  },
   [types.LIST_JOBS_COMPANY](state, data) {
     state.myJobs = data;
   },
   [types.MATCH_COMPANYJOB_COMPANY](state, data) {
     state.studentMatchResults = data;
   },
-
   //student
   [types.REGISTER_STUDENT](state, data) {
-    state.student = data;
-  },
-  [types.GET_STUDENT](state, data) {
     state.student = data;
   },
   [types.CERTI_STUDENT](state, data) {
@@ -178,12 +180,58 @@ const myActions = {
     commit(types.LIST_PROFESSIONSMCLASS, resp.data.professionsMClass);
   },
   async [types.GET_REGISTER_INDEX_SCLASS]({ commit }, data) {
-    console.log(data);
     let resp = await axios.post("register/index/professionsSClass", data);
     commit(types.LIST_PROFESSIONSSCLASS, resp.data.professionsSClass);
   },
   //-------Admin-------
-
+  async [types.LIST_STUDENTS_ADMIN]({ commit }) {
+    let resp = await axios.get("generalAdmin/students");
+    commit(types.LIST_STUDENTS, resp.data.students);
+  },
+  async [types.LIST_JOB_MATCH_RESULT_ADMIN]({ commit }, data) {
+    let resp = await axios.get(`generalAdmin/jmr/${data.sid}`);
+    commit(types.LIST_JOB_MATCH_RESULT, resp.data.jobMatchResults);
+  },
+  async [types.GET_STUDENT_ADMIN]({ commit }, data) {
+    let resp = await axios.get(`generalAdmin/student/${data.sid}`);
+    commit(types.GET_STUDENT, resp.data.student);
+  },
+  async [types.LIST_STUDENTRESUMES_ADMIN]({ commit }, data) {
+    let resp = await axios.get(`generalAdmin/studentResume/${data.sid}`);
+    commit(types.LIST_STUDENTRESUMES, resp.data.studentResumeVos);
+  },
+  async [types.LIST_COMPANIES_ADMIN]({ commit }) {
+    let resp = await axios.get("generalAdmin/companies");
+    commit(types.LIST_COMPANIES, resp.data.companies);
+  },
+  async [types.LIST_STUDENT_MATCH_RESULT_ADMIN]({ commit }, data) {
+    let resp = await axios.get(`generalAdmin/smr/${data.cid}`);
+    commit(types.LIST_STUDENT_MATCH_RESULT, resp.data.studentMatchResults);
+  },
+  async [types.GET_COMPANY_ADMIN]({ commit }, data) {
+    let resp = await axios.get(`generalAdmin/company/${data.cid}`);
+    commit(types.GET_COMPANY, resp.data.company);
+  },
+  async [types.LIST_COMPANYJOBS_ADMIN]({ commit }, data) {
+    let resp = await axios.get(`generalAdmin/companyJob/${data.cid}`);
+    commit(types.LIST_COMPANYJOBS, resp.data.companyJobs);
+  },
+  async [types.LIST_POSITIONS_ADMIN]({ commit }) {
+    let resp = await axios.get("generalAdmin/positions");
+    commit(types.LIST_POSITIONS, resp.data.positions);
+  },
+  async [types.LIST_PROFESIONMCALSSVO_ADMIN]({ commit }) {
+    let resp = await axios.get("generalAdmin/professionMClassVo");
+    commit(types.LIST_PROFESIONMCALSSVO_ADMIN, resp.data.professionMClassVos);
+  },
+  async [types.LIST_PROFESSIONSSCLASS_ADMIN]({ commit }, data) {
+    let resp = await axios.post("generalAdmin/professionsSClass", data);
+    commit(types.LIST_PROFESSIONSSCLASS, resp.data.professionsSClass);
+  },
+  async [types.LIST_JOB_DIRECOR_ADMIN]({ commit }, data) {
+    let resp = await axios.get("generalAdmin/jobDirector", data);
+    commit(types.LIST_JOB_DIRECOR_ADMIN, resp.data.jobDirectors);
+  },
   //-------Company-------
   async [types.REGISTER_COMPANY]({ commit }, data) {
     let resp = await axios.post("register/company", data);
@@ -191,7 +239,6 @@ const myActions = {
     commit(types.UPDATE_USER, resp.data.company);
   },
   async [types.UPDATE_PASSWORD_COMPANY]({ commit }, data) {
-    console.log(data);
     let resp = await axios.patch("company/password", data);
     commit(types.GET_COMPANY, resp.data.company);
   },
@@ -236,13 +283,11 @@ const myActions = {
 
   //-------Student-------
   async [types.REGISTER_STUDENT]({ commit }, data) {
-    console.log(data);
     let resp = await axios.post("register/student", data);
     commit(types.REGISTER_STUDENT, resp.data);
     commit(types.UPDATE_USER, resp.data.student);
   },
   async [types.UPDATE_PASSWORD_STUDENT]({ commit }, data) {
-    console.log(data);
     let resp = await axios.patch("student/password", data);
     commit(types.GET_STUDENT, resp.data.student);
   },
@@ -273,7 +318,6 @@ const myActions = {
     commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
   },
   async [types.ADD_STUDENTRESUME_STUDENT]({ commit }, data) {
-    console.log(data);
     let resp = await axios.post("student/studentResume", data);
     commit(types.LIST_RESUMES_STUDENT, resp.data.studentResumeVos);
   },
@@ -289,39 +333,35 @@ const myActions = {
   //-------JobDirector-------
   async [types.LIST_STUDENTS_JOB_DIRECTOR]({ commit }) {
     let resp = await axios.get("jobDirector/students");
-    commit(types.LIST_STUDENTS_JOB_DIRECTOR, resp.data.students);
+    commit(types.LIST_STUDENTS, resp.data.students);
   },
   async [types.LIST_JOB_MATCH_RESULT_JOB_DIRECTOR]({ commit }, data) {
     let resp = await axios.get(`jobDirector/jmr/${data.sid}`);
-    commit(types.LIST_JOB_MATCH_RESULT_JOB_DIRECTOR, resp.data.jobMatchResults);
+    commit(types.LIST_JOB_MATCH_RESULT, resp.data.jobMatchResults);
   },
   async [types.GET_STUDENT_JOB_DIRECTOR]({ commit }, data) {
-    console.log("async data" + data);
     let resp = await axios.get(`jobDirector/student/${data.sid}`);
-    commit(types.GET_STUDENT_JOB_DIRECTOR, resp.data.student);
+    commit(types.GET_STUDENT, resp.data.student);
   },
   async [types.LIST_STUDENTRESUMES_JOB_DIRECTOR]({ commit }, data) {
     let resp = await axios.get(`jobDirector/studentResume/${data.sid}`);
-    commit(types.LIST_STUDENTRESUMES_JOB_DIRECTOR, resp.data.studentResumeVos);
+    commit(types.LIST_STUDENTRESUMES, resp.data.studentResumeVos);
   },
   async [types.LIST_COMPANIES_JOB_DIRECTOR]({ commit }) {
     let resp = await axios.get("jobDirector/companies");
-    commit(types.LIST_COMPANIES_JOB_DIRECTOR, resp.data.companies);
+    commit(types.LIST_COMPANIES, resp.data.companies);
   },
   async [types.LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR]({ commit }, data) {
     let resp = await axios.get(`jobDirector/smr/${data.cid}`);
-    commit(
-      types.LIST_STUDENT_MATCH_RESULT_JOB_DIRECTOR,
-      resp.data.studentMatchResults
-    );
+    commit(types.LIST_STUDENT_MATCH_RESULT, resp.data.studentMatchResults);
   },
   async [types.GET_COMPANY_JOB_DIRECTOR]({ commit }, data) {
     let resp = await axios.get(`jobDirector/company/${data.cid}`);
-    commit(types.GET_COMPANY_JOB_DIRECTOR, resp.data.company);
+    commit(types.GET_COMPANY, resp.data.company);
   },
   async [types.LIST_COMPANYJOBS_JOB_DIRECTOR]({ commit }, data) {
     let resp = await axios.get(`jobDirector/companyJob/${data.cid}`);
-    commit(types.LIST_COMPANYJOBS_JOB_DIRECTOR, resp.data.companyJobs);
+    commit(types.LIST_COMPANYJOBS, resp.data.companyJobs);
   }
 };
 export default new Vuex.Store({
