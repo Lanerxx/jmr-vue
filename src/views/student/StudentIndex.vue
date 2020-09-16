@@ -15,7 +15,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>岗位信息</v-list-item-title>
+              <v-list-item-title>简历信息</v-list-item-title>
             </v-list-item>
 
             <v-list-item to="/studentSafetyInformation">

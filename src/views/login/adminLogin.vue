@@ -1,38 +1,32 @@
 <template>
-  <v-container class="grey lighten-5">
-    <v-row>
-      <v-col>
-        <v-card class="mx-auto">
-          <v-card flat>
-            <v-card class="mx-auto ">
-              <v-card-title class="title">
-                Welcome to the JMR system!
-              </v-card-title>
-              <v-card-text class="text">
-                <form>
-                  <v-text-field
-                    v-model="userName"
-                    label="请输入您的用户名"
-                    required
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="userPassword"
-                    label="请输入您的密码"
-                    required
-                    type="password"
-                  ></v-text-field>
-                  <v-spacer></v-spacer>
-                  <v-btn class="mr-4" @click="login" to="/help">
-                    登陆
-                  </v-btn>
-                </form>
-              </v-card-text>
-            </v-card>
-          </v-card>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-card class="mx-auto">
+    <v-card flat>
+      <v-card class="mx-auto ">
+        <v-card-title class="title">
+          Welcome to the JMR system!
+        </v-card-title>
+        <v-card-text class="text">
+          <form>
+            <v-text-field
+              v-model="userName"
+              label="请输入您的用户名"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="userPassword"
+              label="请输入您的密码"
+              required
+              type="password"
+            ></v-text-field>
+            <v-spacer></v-spacer>
+            <v-btn class="mr-4" @click="login" to="/help">
+              登陆
+            </v-btn>
+          </form>
+        </v-card-text>
+      </v-card>
+    </v-card>
+  </v-card>
 </template>
 
 <script>
@@ -71,10 +65,6 @@ export default {
 </script>
 
 <style>
-/* Helper classes */
-.basil {
-  background-color: #fffbe6 !important;
-}
 .basil--text {
   color: #356859 !important;
 }

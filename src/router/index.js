@@ -205,7 +205,8 @@ let jobDirectorRoutes = [
   },
   {
     path: "/jobDirectorStudentMatchResult/:cid",
-    component: () => import("@/views/jobDirector/abc.vue")
+    component: () =>
+      import("@/views/jobDirector/JobDirectorCompanyStudentMatchResult.vue")
   },
   {
     path: "/jobDirectorStudentResume",

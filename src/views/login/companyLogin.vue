@@ -1,163 +1,148 @@
 <template>
-  <v-container class="grey lighten-5">
-    <v-row>
-      <v-col>
-        <v-card class="mx-auto">
-          <v-tabs
-            v-model="tab"
-            background-color="transparent"
-            color="basil"
-            grow
-          >
-            <v-tab>
-              登陆
-            </v-tab>
-            <v-tab>
-              注册
-            </v-tab>
-          </v-tabs>
+  <v-card class="mx-auto">
+    <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+      <v-tab>
+        登陆
+      </v-tab>
+      <v-tab>
+        注册
+      </v-tab>
+    </v-tabs>
 
-          <v-tabs-items v-model="tab">
-            <v-tab-item>
-              <v-card flat>
-                <v-card class="mx-auto ">
-                  <v-card-title class="title">
-                    Welcome to the JMR system!
-                  </v-card-title>
-                  <v-card-text class="text">
-                    <form>
-                      <v-text-field
-                        color="teal"
-                        v-model="c_telephone"
-                        label="请输入您的电话号"
-                        required
-                        @input="$v.c_telephone.$touch()"
-                        @blur="$v.c_telephone.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        color="teal"
-                        v-model="c_password"
-                        label="请输入您的密码"
-                        required
-                        type="password"
-                        @input="$v.c_password.$touch()"
-                        @blur="$v.c_password.$touch()"
-                      ></v-text-field>
-                      <v-spacer></v-spacer>
-                      <v-btn class="mr-4" @click="login" to="/help">
-                        登陆
-                      </v-btn>
-                    </form>
-                  </v-card-text>
-                </v-card>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card flat>
-                <v-card class="mx-auto ">
-                  <v-card-title class="title">
-                    Welcome to the JMR system!
-                  </v-card-title>
-                  <v-card-text class="text">
-                    <form>
-                      <v-text-field
-                        v-model="c_name"
-                        label="*请输入企业名"
-                        required
-                        @input="$v.c_name.$touch()"
-                        @blur="$v.c_name.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_password"
-                        label="*请输入密码"
-                        required
-                        type="password"
-                        @input="$v.c_password.$touch()"
-                        @blur="$v.c_password.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_password_copy"
-                        type="password"
-                        label="*请再次输入密码"
-                        required
-                        @input="$v.c_password_copy.$touch()"
-                        @blur="$v.c_password_copy.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_s_code"
-                        label="*请输入企业统一社会信用代码"
-                        required
-                        @input="$v.c_s_code.$touch()"
-                        @blur="$v.c_s_code.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_description"
-                        label="*请输入企业简介"
-                        required
-                        @input="$v.c_description.$touch()"
-                        @blur="$v.c_description.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_contact"
-                        label="*请输入企业联系人"
-                        required
-                        @input="$v.c_contact.$touch()"
-                        @blur="$v.c_contact.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_telephone"
-                        label="*请输入企业联系电话"
-                        required
-                        @input="$v.c_telephone.$touch()"
-                        @blur="$v.c_telephone.$touch()"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="c_email"
-                        label="*请输入企业邮箱"
-                        required
-                        @input="$v.c_email.$touch()"
-                        @blur="$v.c_email.$touch()"
-                      ></v-text-field>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                        @click.stop="dialogR = true"
-                        class="mr-4"
-                        @click="registerCompany"
-                      >
-                        注册
-                      </v-btn>
-                      <v-dialog v-model="dialogR" max-width="290" v-if="user">
-                        <v-card>
-                          <v-card-title class="headline" v-if="user">
-                            恭喜您，注册成功！
-                          </v-card-title>
-                          <v-card-text v-if="user">
-                            您可以使用手机号和密码登陆。
-                          </v-card-text>
-
-                          <v-card-actions>
-                            <v-spacer></v-spacer>
-
-                            <v-btn
-                              color="green darken-1"
-                              text
-                              @click="registered()"
-                            >
-                              OK
-                            </v-btn>
-                          </v-card-actions>
-                        </v-card>
-                      </v-dialog>
-                    </form>
-                  </v-card-text>
-                </v-card>
-              </v-card>
-            </v-tab-item>
-          </v-tabs-items>
+    <v-tabs-items v-model="tab">
+      <v-tab-item>
+        <v-card flat>
+          <v-card class="mx-auto ">
+            <v-card-title class="title">
+              Welcome to the JMR system!
+            </v-card-title>
+            <v-card-text class="text">
+              <form>
+                <v-text-field
+                  color="teal"
+                  v-model="c_telephone"
+                  label="请输入您的电话号"
+                  required
+                  @input="$v.c_telephone.$touch()"
+                  @blur="$v.c_telephone.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  color="teal"
+                  v-model="c_password"
+                  label="请输入您的密码"
+                  required
+                  type="password"
+                  @input="$v.c_password.$touch()"
+                  @blur="$v.c_password.$touch()"
+                ></v-text-field>
+                <v-spacer></v-spacer>
+                <v-btn class="mr-4" @click="login" to="/help">
+                  登陆
+                </v-btn>
+              </form>
+            </v-card-text>
+          </v-card>
         </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card class="mx-auto ">
+            <v-card-title class="title">
+              Welcome to the JMR system!
+            </v-card-title>
+            <v-card-text class="text">
+              <form>
+                <v-text-field
+                  v-model="c_name"
+                  label="*请输入企业名"
+                  required
+                  @input="$v.c_name.$touch()"
+                  @blur="$v.c_name.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_password"
+                  label="*请输入密码"
+                  required
+                  type="password"
+                  @input="$v.c_password.$touch()"
+                  @blur="$v.c_password.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_password_copy"
+                  type="password"
+                  label="*请再次输入密码"
+                  required
+                  @input="$v.c_password_copy.$touch()"
+                  @blur="$v.c_password_copy.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_s_code"
+                  label="*请输入企业统一社会信用代码"
+                  required
+                  @input="$v.c_s_code.$touch()"
+                  @blur="$v.c_s_code.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_description"
+                  label="*请输入企业简介"
+                  required
+                  @input="$v.c_description.$touch()"
+                  @blur="$v.c_description.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_contact"
+                  label="*请输入企业联系人"
+                  required
+                  @input="$v.c_contact.$touch()"
+                  @blur="$v.c_contact.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_telephone"
+                  label="*请输入企业联系电话"
+                  required
+                  @input="$v.c_telephone.$touch()"
+                  @blur="$v.c_telephone.$touch()"
+                ></v-text-field>
+                <v-text-field
+                  v-model="c_email"
+                  label="*请输入企业邮箱"
+                  required
+                  @input="$v.c_email.$touch()"
+                  @blur="$v.c_email.$touch()"
+                ></v-text-field>
+                <v-spacer></v-spacer>
+                <v-btn
+                  @click.stop="dialogR = true"
+                  class="mr-4"
+                  @click="registerCompany"
+                >
+                  注册
+                </v-btn>
+                <v-dialog v-model="dialogR" max-width="290" v-if="user">
+                  <v-card>
+                    <v-card-title class="headline" v-if="user">
+                      恭喜您，注册成功！
+                    </v-card-title>
+                    <v-card-text v-if="user">
+                      您可以使用手机号和密码登陆。
+                    </v-card-text>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+
+                      <v-btn color="green darken-1" text @click="registered()">
+                        OK
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </form>
+            </v-card-text>
+          </v-card>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
+  </v-card>
 </template>
 
 <script>
@@ -238,10 +223,6 @@ export default {
 </script>
 
 <style>
-/* Helper classes */
-.basil {
-  background-color: #fffbe6 !important;
-}
 .basil--text {
   color: #356859 !important;
 }
